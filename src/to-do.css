@@ -1,0 +1,144 @@
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+
+.To-Do {
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    background-image: url(https://mcdn.wallpapersafari.com/medium/54/60/DbHWBg.jpg);
+    background-position: bottom center;
+    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.To-Do h1 {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 40px;
+    text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.To-Do form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.To-Do input[type='text'] {
+    flex: 1;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.To-Do input[type='text']:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.To-Do button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 25px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.To-Do button[type="submit"]:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+.clear-all-btn {
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    padding: 12px 30px !important;
+    font-size: 0.9rem !important;
+}
+
+.clear-all-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+}
+.todo-header {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+.clear-btn-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.mark-all-btn {
+    background-color: rgba(40, 167, 69, 0.2) !important;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(40, 167, 69, 0.4) !important;
+    color: white !important;
+    padding: 12px 30px !important;
+    font-size: 0.9rem !important;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mark-all-btn:hover {
+    background-color: rgba(40, 167, 69, 0.4) !important;
+    border-color: rgba(40, 167, 69, 0.6) !important;
+    transform: translateY(-2px);
+}
+
+.clear-all-btn {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    padding: 12px 30px !important;
+    font-size: 0.9rem !important;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
