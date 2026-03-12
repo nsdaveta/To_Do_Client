@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:4000/todos',
+    baseURL: 'https://to-do-server-1yuc.onrender.com/todos',
 });
 
 // Add a request interceptor to automatically add the auth token from localStorage
