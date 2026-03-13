@@ -111,3 +111,79 @@
   box-shadow: 0 15px 20px -5px rgba(99, 102, 241, 0.4);
   filter: brightness(1.1);
 }
+
+/* ─── Responsive: Tablet (≤ 768px) ─── */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.25rem;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .nav-brand {
+    font-size: 1.25rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .nav-link {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .user-info {
+    margin: 0 8px;
+    padding-left: 12px;
+  }
+
+  .user-email {
+    font-size: 0.8rem;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .logout-btn,
+  .login-btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+}
+
+/* ─── Responsive: Mobile (≤ 480px) ─── */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-brand {
+    font-size: 1.1rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .nav-link {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+  }
+
+  .user-info {
+    display: none; /* Hide on very small screens to save space */
+  }
+
+  .logout-btn,
+  .login-btn {
+    padding: 7px 12px;
+    font-size: 0.78rem;
+  }
+}
+
