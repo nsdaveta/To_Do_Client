@@ -184,6 +184,8 @@ const Register = () => {
     );
 
     return (
+        <>
+        <title>To Do App - Sign Up</title>
         <div className="auth-page">
             <div className="auth-container glass-card">
                 <h2>{isRegistered ? 'Verify OTP' : 'Create Account'}</h2>
@@ -196,6 +198,7 @@ const Register = () => {
                 {successMessage && <p className="success-message">{successMessage}</p>}
             </div>
         </div>
+        </>
     );
 };
 

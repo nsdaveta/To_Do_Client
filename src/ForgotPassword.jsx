@@ -50,6 +50,8 @@ const ForgotPassword = () => {
     };
 
     return (
+        <>
+        <title>To Do App - Forgot Password?</title>
         <div className="auth-page">
             <div className="auth-container glass-card">
                 <h2>{step === 1 ? 'Forgot Password' : 'Reset Password'}</h2>
@@ -115,6 +117,7 @@ const ForgotPassword = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

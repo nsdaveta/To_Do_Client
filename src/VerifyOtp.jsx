@@ -72,6 +72,8 @@ const VerifyOtp = () => {
     };
 
     return (
+        <>
+        <title>To Do App - Verify OTP</title>
         <div className="auth-page">
             <div className="auth-container glass-card">
                 <h2>Verify OTP</h2>
@@ -117,6 +119,7 @@ const VerifyOtp = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

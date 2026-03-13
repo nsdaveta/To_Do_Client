@@ -61,6 +61,8 @@ const Login = () => {
     };
 
     return (
+        <>
+        <title>To Do App - Login</title>
         <div className="auth-page">
             <div className="auth-container glass-card">
                 <h2>Welcome Back</h2>
@@ -126,6 +128,7 @@ const Login = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

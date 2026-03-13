@@ -83,6 +83,8 @@ const Home = () => {
     }
 
     return (
+        <>
+        <title>To Do App - Home</title>
         <div className="home-container glass-card">
             <h1>My Tasks</h1>
             <form onSubmit={handleAddTodo} className="todo-form">
@@ -122,7 +124,8 @@ const Home = () => {
                 </div>
             )}
         </div>
+        </>
     );
 };
 
-export default Home;
+export default Home;
