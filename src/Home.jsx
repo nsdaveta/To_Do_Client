@@ -71,6 +71,8 @@ const Home = () => {
 
     if (!token) {
         return (
+            <>
+            <title>To Do App - Home</title>
             <div className="home-landing">
                 <h1>Organize Your Life</h1>
                 <p>A simple, elegant way to keep track of your daily tasks and boost your productivity.</p>
@@ -79,6 +81,7 @@ const Home = () => {
                     <Link to="/register" className="secondary-btn" style={{ padding: '14px 40px', borderRadius: '12px' }}>Create Account</Link>
                 </div>
             </div>
+            </>
         );
     }
 
