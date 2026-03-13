@@ -25,6 +25,8 @@ const ResendOtp = ({ email }) => {
     };
 
     return (
+        <>
+        <title>To Do App - Resend OTP</title>
         <div className="resend-container">
             <button 
                 onClick={handleResend} 
@@ -35,6 +37,7 @@ const ResendOtp = ({ email }) => {
             </button>
             {message && <p className={message.includes('Failed') ? 'error-message' : 'success-message'}>{message}</p>}
         </div>
+        </>
     );
 };
 
