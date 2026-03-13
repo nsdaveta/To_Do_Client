@@ -39,7 +39,6 @@ const Navbar = () => {
                 {token ? (
                     <>
                         <NavLink to="/todos" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Tasks</NavLink>
-                        <NavLink to="/users" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Users</NavLink>
                         <div className="user-info">
                             <span className="user-label">Logged in as</span>
                             <span className="user-email">{username || 'User'}</span>
