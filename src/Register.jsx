@@ -74,7 +74,7 @@ const Register = () => {
         try {
             const response = await api.post('/verify-otp', { email, otp });
             setSuccessMessage(response.data.message + ' Redirecting to login...');
-            
+
             // Redirect to login page after a short delay
             setTimeout(() => {
                 navigate('/login');
@@ -166,7 +166,7 @@ const Register = () => {
     // Renders the OTP verification form
     const renderOtpForm = () => (
         <form onSubmit={handleOtpSubmit}>
-             <p>Enter the 6-digit OTP sent to <strong>{email}</strong></p>
+            <p>Enter the 6-digit OTP sent to <strong>{email}</strong></p>
             <div className="form-group">
                 <label htmlFor="otp">6-Digit OTP</label>
                 <OtpInput value={otp} onChange={setOtp} />
@@ -174,7 +174,7 @@ const Register = () => {
             <button type="submit" disabled={isLoading || otp.length !== 6} className="primary-btn">
                 {isLoading ? <Spinner /> : 'Verify Email'}
             </button>
-            
+
             <div className="resend-container">
                 <button type="button" onClick={handleResendOtp} disabled={isLoading || resendCooldown > 0} className="secondary-btn">
                     {resendCooldown > 0 ? `Resend Available in ${resendCooldown}s` : 'Resend OTP'}
@@ -185,19 +185,19 @@ const Register = () => {
 
     return (
         <>
-        <title>To Do App - Sign Up</title>
-        <div className="auth-page">
-            <div className="auth-container glass-card">
-                <h2>{isRegistered ? 'Verify OTP' : 'Create Account'}</h2>
-                
-                {/* Conditionally render the correct form */}
-                {!isRegistered ? renderRegisterForm() : renderOtpForm()}
+            <title>To Do App - Sign Up</title>
+            <div className="auth-page">
+                <div className="auth-container glass-card">
+                    <h2>{isRegistered ? 'Verify OTP' : 'Create Account'}</h2>
 
-                {/* Display loading, error, or success messages */}
-                {error && <p className="error-message">{error}</p>}
-                {successMessage && <p className="success-message">{successMessage}</p>}
+                    {/* Conditionally render the correct form */}
+                    {!isRegistered ? renderRegisterForm() : renderOtpForm()}
+
+                    {/* Display loading, error, or success messages */}
+                    {error && <p className="error-message">{error}</p>}
+                    {successMessage && <p className="success-message">{successMessage}</p>}
+                </div>
             </div>
-        </div>
         </>
     );
 };

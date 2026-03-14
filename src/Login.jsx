@@ -46,12 +46,14 @@ const Login = () => {
         }
 
         setIsLoading(true);
+        setError('');
         try {
+            const trimmedEmail = email.trim();
             // Trigger OTP resend so the user actually receives the email
-            const response = await api.post('/resend-otp', { email, source: 'login' });
+            const response = await api.post('/resend-otp', { email: trimmedEmail, source: 'login' });
             
             // Navigate to independent VerifyOtp page with email and success message
-            navigate('/verify-otp', { state: { email, message: response.data.message } });
+            navigate('/verify-otp', { state: { email: trimmedEmail, message: response.data.message } });
         } catch (err) {
             const msg = err.response?.data?.message || 'Failed to send verification OTP';
             setError(msg);
@@ -123,7 +125,7 @@ const Login = () => {
                     <p style={{ marginBottom: '15px' }}>Don't have an account? <span onClick={() => navigate('/register')}>Sign Up</span></p>
                     <p style={{ fontSize: '0.85rem' }}>Did you miss your verification?</p>
                     <button type="button" onClick={handleVerifyRedirect} disabled={isLoading} className="secondary-btn" style={{ marginTop: '10px' }}>
-                        Verify OTP
+                        {isLoading ? <Spinner /> : 'Verify OTP'}
                     </button>
                 </div>
             </div>
