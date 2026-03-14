@@ -41,7 +41,10 @@ const VerifyOtp = () => {
         setSuccessMessage('');
 
         try {
-            const response = await api.post('/verify-otp', { email, otp });
+            const response = await api.post('/verify-otp', { 
+                email: email.trim(), 
+                otp: otp.trim() 
+            });
             setSuccessMessage(response.data.message + ' Redirecting to login...');
             
             setTimeout(() => {
@@ -61,7 +64,7 @@ const VerifyOtp = () => {
         setError('');
         setSuccessMessage('');
         try {
-            const response = await api.post('/resend-otp', { email });
+            const response = await api.post('/resend-otp', { email: email.trim() });
             setSuccessMessage(response.data.message);
             setResendCooldown(60);
         } catch (err) {

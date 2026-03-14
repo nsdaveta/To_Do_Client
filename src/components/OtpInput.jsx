@@ -19,7 +19,8 @@ const OtpInput = ({ length = 6, value, onChange }) => {
             return;
         }
 
-        const newOtp = value.split('');
+        const currentOtp = value || '';
+        const newOtp = currentOtp.split('');
         newOtp[index] = val;
         const combined = newOtp.join('');
         onChange(combined);

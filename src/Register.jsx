@@ -52,7 +52,7 @@ const Register = () => {
         try {
             const response = await api.post('/register', {
                 username,
-                email,
+                email: email.trim(),
                 password
             });
             setSuccessMessage(response.data.message);
@@ -72,7 +72,10 @@ const Register = () => {
         setSuccessMessage('');
 
         try {
-            const response = await api.post('/verify-otp', { email, otp });
+            const response = await api.post('/verify-otp', { 
+                email: email.trim(), 
+                otp: otp.trim() 
+            });
             setSuccessMessage(response.data.message + ' Redirecting to login...');
 
             // Redirect to login page after a short delay
@@ -95,7 +98,7 @@ const Register = () => {
         setError('');
         setSuccessMessage('');
         try {
-            const response = await api.post('/resend-otp', { email });
+            const response = await api.post('/resend-otp', { email: email.trim() });
             setSuccessMessage(response.data.message);
             setResendCooldown(60); // Start 60-second cooldown
         } catch (err) {

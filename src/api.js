@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: window.location.hostname === 'localhost' 
+    baseURL: ['localhost', '127.0.0.1'].includes(window.location.hostname)
         ? 'http://localhost:4000/todos' 
         : 'https://to-do-server-1yuc.onrender.com/todos',
 });

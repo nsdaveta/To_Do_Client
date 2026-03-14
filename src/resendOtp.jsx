@@ -15,7 +15,7 @@ const ResendOtp = ({ email }) => {
         setIsLoading(true);
         setMessage('');
         try {
-            const res = await api.post('/resend-otp', { email });
+            const res = await api.post('/resend-otp', { email: email.trim() });
             setMessage(res.data.message || 'OTP resent successfully!');
         } catch (err) {
             setMessage(err.response?.data?.message || 'Failed to resend OTP.');

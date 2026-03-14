@@ -19,7 +19,7 @@ const ForgotPassword = () => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            await api.post('/forgot-password', { email });
+            await api.post('/forgot-password', { email: email.trim() });
             toast.success('OTP sent to your email.');
             setStep(2);
         } catch (err) {
@@ -34,7 +34,11 @@ const ForgotPassword = () => {
         setIsLoading(true);
         setPasswordError('');
         try {
-            await api.post('/reset-password', { email, otp, newPassword });
+            await api.post('/reset-password', { 
+                email: email.trim(), 
+                otp: otp.trim(), 
+                newPassword 
+            });
             toast.success('Password reset successful. Please login.');
             navigate('/login');
         } catch (err) {
