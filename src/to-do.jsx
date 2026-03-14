@@ -138,7 +138,7 @@ const To_Do = () =>
         }
   return (
     <>
-    <title>To Do List</title>
+    <title>To Do App - Tasks</title>
     <div className="To-Do">
         <div className="todo-header">
             <h1>To-Do List</h1>
@@ -172,4 +172,4 @@ const To_Do = () =>
     </>          
   )
 }
-export default To_Do;
+export default To_Do;
