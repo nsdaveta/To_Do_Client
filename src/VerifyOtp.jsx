@@ -83,20 +83,18 @@ const VerifyOtp = () => {
                 <p>Enter the 6-digit OTP sent to <strong>{email || 'your email'}</strong></p>
                 
                 <form onSubmit={handleVerifySubmit}>
-                    {!email && (
-                        <div className="form-group">
-                            <label htmlFor="email">Email Address</label>
-                            <input
-                                id="email"
-                                type="email"
-                                placeholder="name@example.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                                disabled={isLoading}
-                            />
-                        </div>
-                    )}
+                    <div className="form-group">
+                        <label htmlFor="email">Email Address</label>
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="name@example.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            disabled={isLoading || !!location.state?.email}
+                        />
+                    </div>
                     
                     <div className="form-group">
                         <label htmlFor="otp">6-Digit OTP</label>
