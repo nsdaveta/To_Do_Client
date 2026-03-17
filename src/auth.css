@@ -341,3 +341,33 @@
   }
 }
 
+/* Password Requirements Styles */
+.password-requirements {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 20px 0;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.requirement-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.requirement-item.met {
+  color: var(--success);
+}
+
+.requirement-icon {
+  font-size: 0.75rem;
+}
+
+.requirement-item.met .requirement-icon {
+  color: var(--success);
+}

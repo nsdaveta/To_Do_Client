@@ -108,6 +108,17 @@ const Register = () => {
         }
     };
 
+    // Password requirement checks
+    const passwordRequirements = [
+        { label: 'At least 8 characters long', regex: /.{8,}/ },
+        { label: 'At least one lowercase letter', regex: /[a-z]/ },
+        { label: 'At least one uppercase letter', regex: /[A-Z]/ },
+        { label: 'At least one number', regex: /[0-9]/ },
+        { label: 'At least one special character (@$!%*?&)', regex: /[@$!%*?&]/ },
+    ];
+
+    const isRequirementMet = (regex) => regex.test(password);
+
     // Renders the initial registration form
     const renderRegisterForm = () => (
         <form onSubmit={handleRegisterSubmit}>
@@ -157,6 +168,19 @@ const Register = () => {
                     </button>
                 </div>
             </div>
+
+            {/* Password Requirements List */}
+            <ul className="password-requirements">
+                {passwordRequirements.map((req, index) => (
+                    <li key={index} className={`requirement-item ${isRequirementMet(req.regex) ? 'met' : ''}`}>
+                        <span className="requirement-icon">
+                            {isRequirementMet(req.regex) ? '●' : '○'}
+                        </span>
+                        {req.label}
+                    </li>
+                ))}
+            </ul>
+
             <button type="submit" disabled={isLoading} className="primary-btn">
                 {isLoading ? <Spinner /> : 'Create Account'}
             </button>

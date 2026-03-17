@@ -100,6 +100,25 @@ const ForgotPassword = () => {
                                     {showPassword ? <AiOutlineEyeInvisible size={22} /> : <AiOutlineEye size={22} />}
                                 </button>
                             </div>
+                            
+                            {/* Password Requirements List */}
+                            <ul className="password-requirements" style={{ marginTop: '15px' }}>
+                                {[
+                                    { label: 'At least 8 characters long', regex: /.{8,}/ },
+                                    { label: 'At least one lowercase letter', regex: /[a-z]/ },
+                                    { label: 'At least one uppercase letter', regex: /[A-Z]/ },
+                                    { label: 'At least one number', regex: /[0-9]/ },
+                                    { label: 'At least one special character (@$!%*?&)', regex: /[@$!%*?&]/ },
+                                ].map((req, index) => (
+                                    <li key={index} className={`requirement-item ${req.regex.test(newPassword) ? 'met' : ''}`}>
+                                        <span className="requirement-icon">
+                                            {req.regex.test(newPassword) ? '●' : '○'}
+                                        </span>
+                                        {req.label}
+                                    </li>
+                                ))}
+                            </ul>
+
                             {passwordError && <p className="error-message" style={{ marginTop: '5px', fontSize: '0.8rem' }}>{passwordError}</p>}
                         </div>
                         <button type="submit" disabled={isLoading || otp.length !== 6} className="primary-btn">
