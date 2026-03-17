@@ -142,12 +142,14 @@
 
 .error-message {
   background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--error);
   border-left: 4px solid var(--error);
   color: var(--error);
-  padding: 12px;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
   font-size: 0.9rem;
   margin-top: 20px;
+  font-weight: 500;
 }
 
 .success-message {
@@ -341,15 +343,16 @@
   }
 }
 
-/* Password Requirements Styles */
-.password-requirements {
+/* Field Requirements Styles */
+.password-requirements,
+.field-requirements {
   list-style: none;
   padding: 0;
-  margin: 10px 0 20px 0;
+  margin: 5px 0 15px 0;
   font-size: 0.85rem;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 
 .requirement-item {

@@ -45,6 +45,17 @@ const Register = () => {
     // Handles the initial registration form submission
     const handleRegisterSubmit = async (e) => {
         e.preventDefault();
+
+        // Client-side validation check
+        const isUsernameValid = usernameRequirements.every(req => isRequirementMet(req.regex, username));
+        const isEmailValid = emailRequirements.every(req => isRequirementMet(req.regex, email));
+        const isPasswordValid = passwordRequirements.every(req => isRequirementMet(req.regex, password));
+
+        if (!isUsernameValid || !isEmailValid || !isPasswordValid) {
+            setError('Please fulfill all field requirements highlighted above before proceeding.');
+            return;
+        }
+
         setIsLoading(true);
         setError('');
         setSuccessMessage('');
@@ -108,7 +119,15 @@ const Register = () => {
         }
     };
 
-    // Password requirement checks
+    // Field requirement checks
+    const usernameRequirements = [
+        { label: 'At least 3 characters long', regex: /.{3,}/ },
+    ];
+
+    const emailRequirements = [
+        { label: 'Must be a valid email (e.g., user@example.com)', regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
+    ];
+
     const passwordRequirements = [
         { label: 'At least 8 characters long', regex: /.{8,}/ },
         { label: 'At least one lowercase letter', regex: /[a-z]/ },
@@ -117,7 +136,7 @@ const Register = () => {
         { label: 'At least one special character (@$!%*?&)', regex: /[@$!%*?&]/ },
     ];
 
-    const isRequirementMet = (regex) => regex.test(password);
+    const isRequirementMet = (regex, value) => regex.test(value);
 
     // Renders the initial registration form
     const renderRegisterForm = () => (
@@ -130,10 +149,24 @@ const Register = () => {
                     type="text"
                     placeholder="Choose a username"
                     value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => {
+                        setUsername(e.target.value);
+                        if (error) setError('');
+                    }}
                     required
                     disabled={isLoading}
                 />
+                {/* Username Requirements List */}
+                <ul className="field-requirements">
+                    {usernameRequirements.map((req, index) => (
+                        <li key={index} className={`requirement-item ${isRequirementMet(req.regex, username) ? 'met' : ''}`}>
+                            <span className="requirement-icon">
+                                {isRequirementMet(req.regex, username) ? '●' : '○'}
+                            </span>
+                            {req.label}
+                        </li>
+                    ))}
+                </ul>
             </div>
             <div className="form-group">
                 <label htmlFor="email">Email Address</label>
@@ -142,10 +175,24 @@ const Register = () => {
                     type="email"
                     placeholder="name@example.com"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                        setEmail(e.target.value);
+                        if (error) setError('');
+                    }}
                     required
                     disabled={isLoading}
                 />
+                {/* Email Requirements List */}
+                <ul className="field-requirements">
+                    {emailRequirements.map((req, index) => (
+                        <li key={index} className={`requirement-item ${isRequirementMet(req.regex, email) ? 'met' : ''}`}>
+                            <span className="requirement-icon">
+                                {isRequirementMet(req.regex, email) ? '●' : '○'}
+                            </span>
+                            {req.label}
+                        </li>
+                    ))}
+                </ul>
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password</label>
@@ -155,7 +202,10 @@ const Register = () => {
                         type={showPassword ? "text" : "password"}
                         placeholder="Create a secure password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                            if (error) setError('');
+                        }}
                         required
                         disabled={isLoading}
                     />
@@ -167,19 +217,18 @@ const Register = () => {
                         {showPassword ? <AiOutlineEyeInvisible size={22} /> : <AiOutlineEye size={22} />}
                     </button>
                 </div>
+                {/* Password Requirements List */}
+                <ul className="field-requirements">
+                    {passwordRequirements.map((req, index) => (
+                        <li key={index} className={`requirement-item ${isRequirementMet(req.regex, password) ? 'met' : ''}`}>
+                            <span className="requirement-icon">
+                                {isRequirementMet(req.regex, password) ? '●' : '○'}
+                            </span>
+                            {req.label}
+                        </li>
+                    ))}
+                </ul>
             </div>
-
-            {/* Password Requirements List */}
-            <ul className="password-requirements">
-                {passwordRequirements.map((req, index) => (
-                    <li key={index} className={`requirement-item ${isRequirementMet(req.regex) ? 'met' : ''}`}>
-                        <span className="requirement-icon">
-                            {isRequirementMet(req.regex) ? '●' : '○'}
-                        </span>
-                        {req.label}
-                    </li>
-                ))}
-            </ul>
 
             <button type="submit" disabled={isLoading} className="primary-btn">
                 {isLoading ? <Spinner /> : 'Create Account'}
@@ -220,9 +269,11 @@ const Register = () => {
                     {/* Conditionally render the correct form */}
                     {!isRegistered ? renderRegisterForm() : renderOtpForm()}
 
-                    {/* Display loading, error, or success messages */}
-                    {error && <p className="error-message">{error}</p>}
-                    {successMessage && <p className="success-message">{successMessage}</p>}
+                    {/* Display loading, error, or success messages - Moved below both forms */}
+                    <div className="message-container">
+                        {error && <p className="error-message">{error}</p>}
+                        {successMessage && <p className="success-message">{successMessage}</p>}
+                    </div>
                 </div>
             </div>
         </>
