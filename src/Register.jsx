@@ -125,7 +125,7 @@ const Register = () => {
     ];
 
     const emailRequirements = [
-        { label: 'Must be a valid email (e.g., user@example.com)', regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
+        { label: 'Must be a real, existing email domain (e.g., gmail.com)', regex: /^[^\s@]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ },
     ];
 
     const passwordRequirements = [
