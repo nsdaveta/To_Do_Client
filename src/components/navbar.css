@@ -177,7 +177,24 @@
   }
 
   .user-info {
-    display: none; /* Hide on very small screens to save space */
+    display: flex;
+    flex-direction: column;
+    margin: 0 4px;
+    padding-left: 8px;
+    border-left: 1px solid var(--glass-border);
+  }
+
+  .user-label {
+    font-size: 0.6rem;
+    display: block;
+    line-height: 1;
+  }
+
+  .user-email {
+    font-size: 0.72rem;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .logout-btn,
