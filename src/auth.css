@@ -374,3 +374,10 @@
 .requirement-item.met .requirement-icon {
   color: var(--success);
 }
+
+.checking-domain {
+  font-size: 0.75rem;
+  color: var(--secondary);
+  font-style: italic;
+  margin-left: 4px;
+}

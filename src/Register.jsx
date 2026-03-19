@@ -23,6 +23,9 @@ const Register = () => {
     const [successMessage, setSuccessMessage] = useState('');
     const [resendCooldown, setResendCooldown] = useState(0);
 
+    const [isEmailDomainValid, setIsEmailDomainValid] = useState(false);
+    const [isCheckingDomain, setIsCheckingDomain] = useState(false);
+
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -42,14 +45,40 @@ const Register = () => {
         return () => clearTimeout(timer);
     }, [resendCooldown]);
 
+    // Real-time DNS verification for email domain
+    useEffect(() => {
+        const verifyDomain = async () => {
+            const domainParts = email.split('@');
+            if (domainParts.length === 2) {
+                const domain = domainParts[1];
+                if (domain && domain.includes('.') && domain.split('.')[1]?.length >= 2) {
+                    setIsCheckingDomain(true);
+                    try {
+                        const response = await api.post('/validate-email-domain', { email });
+                        setIsEmailDomainValid(response.data.valid);
+                    } catch (err) {
+                        setIsEmailDomainValid(false);
+                    } finally {
+                        setIsCheckingDomain(false);
+                    }
+                    return;
+                }
+            }
+            setIsEmailDomainValid(false);
+        };
+
+        const debounceTimer = setTimeout(verifyDomain, 800);
+        return () => clearTimeout(debounceTimer);
+    }, [email]);
+
     // Handles the initial registration form submission
     const handleRegisterSubmit = async (e) => {
         e.preventDefault();
 
         // Client-side validation check
-        const isUsernameValid = usernameRequirements.every(req => isRequirementMet(req.regex, username));
-        const isEmailValid = emailRequirements.every(req => isRequirementMet(req.regex, email));
-        const isPasswordValid = passwordRequirements.every(req => isRequirementMet(req.regex, password));
+        const isUsernameValid = usernameRequirements.every(req => isRequirementMet(req, username));
+        const isEmailValid = emailRequirements.every(req => isRequirementMet(req, email));
+        const isPasswordValid = passwordRequirements.every(req => isRequirementMet(req, password));
 
         if (!isUsernameValid || !isEmailValid || !isPasswordValid) {
             setError('Please fulfill all field requirements highlighted above before proceeding.');
@@ -125,7 +154,7 @@ const Register = () => {
     ];
 
     const emailRequirements = [
-        { label: 'Must be a real, existing email domain (e.g., gmail.com)', regex: /^[^\s@]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ },
+        { label: 'Must be a real, existing email domain (e.g., gmail.com)', regex: /^[^\s@]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, isDomainCheck: true },
     ];
 
     const passwordRequirements = [
@@ -136,7 +165,12 @@ const Register = () => {
         { label: 'At least one special character (@$!%*?&)', regex: /[@$!%*?&]/ },
     ];
 
-    const isRequirementMet = (regex, value) => regex.test(value);
+    const isRequirementMet = (req, value) => {
+        if (req.isDomainCheck) {
+            return req.regex.test(value) && isEmailDomainValid;
+        }
+        return req.regex.test(value);
+    };
 
     // Renders the initial registration form
     const renderRegisterForm = () => (
@@ -159,9 +193,9 @@ const Register = () => {
                 {/* Username Requirements List */}
                 <ul className="field-requirements">
                     {usernameRequirements.map((req, index) => (
-                        <li key={index} className={`requirement-item ${isRequirementMet(req.regex, username) ? 'met' : ''}`}>
+                        <li key={index} className={`requirement-item ${isRequirementMet(req, username) ? 'met' : ''}`}>
                             <span className="requirement-icon">
-                                {isRequirementMet(req.regex, username) ? '●' : '○'}
+                                {isRequirementMet(req, username) ? '●' : '○'}
                             </span>
                             {req.label}
                         </li>
@@ -185,11 +219,12 @@ const Register = () => {
                 {/* Email Requirements List */}
                 <ul className="field-requirements">
                     {emailRequirements.map((req, index) => (
-                        <li key={index} className={`requirement-item ${isRequirementMet(req.regex, email) ? 'met' : ''}`}>
+                        <li key={index} className={`requirement-item ${isRequirementMet(req, email) ? 'met' : ''}`}>
                             <span className="requirement-icon">
-                                {isRequirementMet(req.regex, email) ? '●' : '○'}
+                                {isRequirementMet(req, email) ? '●' : '○'}
                             </span>
                             {req.label}
+                            {isCheckingDomain && <span className="checking-domain"> (Checking...)</span>}
                         </li>
                     ))}
                 </ul>
@@ -220,9 +255,9 @@ const Register = () => {
                 {/* Password Requirements List */}
                 <ul className="field-requirements">
                     {passwordRequirements.map((req, index) => (
-                        <li key={index} className={`requirement-item ${isRequirementMet(req.regex, password) ? 'met' : ''}`}>
+                        <li key={index} className={`requirement-item ${isRequirementMet(req, password) ? 'met' : ''}`}>
                             <span className="requirement-icon">
-                                {isRequirementMet(req.regex, password) ? '●' : '○'}
+                                {isRequirementMet(req, password) ? '●' : '○'}
                             </span>
                             {req.label}
                         </li>
