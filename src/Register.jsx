@@ -213,6 +213,8 @@ const Register = () => {
                     value={email}
                     onChange={(e) => {
                         setEmail(e.target.value);
+                        setIsEmailDomainValid(false);
+                        setIsCheckingDomain(false);
                         if (error) setError('');
                     }}
                     required
