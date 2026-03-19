@@ -47,6 +47,9 @@ const Register = () => {
 
     // Real-time DNS verification for email domain
     useEffect(() => {
+        // Reset valid state immediately as soon as user types
+        setIsEmailDomainValid(false);
+
         const verifyDomain = async () => {
             const domainParts = email.split('@');
             if (domainParts.length === 2) {
@@ -64,7 +67,6 @@ const Register = () => {
                     return;
                 }
             }
-            setIsEmailDomainValid(false);
         };
 
         const debounceTimer = setTimeout(verifyDomain, 800);
