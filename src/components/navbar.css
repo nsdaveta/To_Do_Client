@@ -142,9 +142,6 @@
 
   .user-email {
     font-size: 0.8rem;
-    max-width: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     white-space: nowrap;
   }
 
@@ -192,9 +189,7 @@
 
   .user-email {
     font-size: 0.72rem;
-    max-width: 80px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .logout-btn,
