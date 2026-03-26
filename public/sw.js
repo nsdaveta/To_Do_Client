@@ -1,18 +1,26 @@
-// Minimal service worker for PWA installability
-const CACHE_NAME = 'todo-v1';
+const CACHE_NAME = 'todo-v2';
 const ASSETS = [
     '/',
     '/index.html',
     '/manifest.json',
     '/offline.html',
-    '/logo.png',
-    '/screenshot.png'
+    '/logo.png'
 ];
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll(ASSETS);
+        })
+    );
+});
+
+self.addEventListener('activate', (event) => {
+    event.waitUntil(
+        caches.keys().then((keys) => {
+            return Promise.all(keys.map((key) => {
+                if (key !== CACHE_NAME) return caches.delete(key);
+            }));
         })
     );
 });
@@ -24,11 +32,12 @@ self.addEventListener('fetch', (event) => {
                 return caches.match('/offline.html');
             })
         );
-    } else {
-        event.respondWith(
-            caches.match(event.request).then((response) => {
-                return response || fetch(event.request);
-            })
-        );
+        return;
     }
+
+    event.respondWith(
+        caches.match(event.request).then((response) => {
+            return response || fetch(event.request);
+        })
+    );
 });
