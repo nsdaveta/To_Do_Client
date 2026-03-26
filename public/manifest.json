@@ -18,20 +18,14 @@
   "icons": [
     {
       "src": "/logo.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/logo.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "sizes": "640x640",
+      "type": "image/jpeg",
       "purpose": "any"
     },
     {
       "src": "/logo.png",
       "sizes": "640x640",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "maskable"
     }
   ],
@@ -39,16 +33,9 @@
     {
       "src": "/screenshot.png",
       "sizes": "640x640",
-      "type": "image/png",
+      "type": "image/jpeg",
       "form_factor": "narrow",
       "label": "App on Mobile"
-    },
-    {
-      "src": "/screenshot.png",
-      "sizes": "640x640",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "App on Desktop"
     }
   ],
   "shortcuts": [
@@ -58,17 +45,8 @@
       "icons": [
         {
           "src": "/logo.png",
-          "sizes": "192x192"
-        }
-      ]
-    },
-    {
-      "name": "View Tasks",
-      "url": "/",
-      "icons": [
-        {
-          "src": "/logo.png",
-          "sizes": "192x192"
+          "sizes": "640x640",
+          "type": "image/jpeg"
         }
       ]
     }
