@@ -3,23 +3,35 @@
   "name": "To Do App - Organizer",
   "short_name": "To Do App",
   "description": "A powerful, secure, and beautifully designed task management application to help you stay organized, focused, and productive every day.",
+  "lang": "en-US",
+  "dir": "ltr",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4f46e5",
   "orientation": "any",
-  "categories": ["productivity", "utilities", "lifestyle"],
+  "categories": [
+    "productivity",
+    "utilities",
+    "lifestyle"
+  ],
   "icons": [
     {
       "src": "/logo.png",
-      "sizes": "640x640",
-      "type": "image/jpeg",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any"
     },
     {
       "src": "/logo.png",
       "sizes": "640x640",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "maskable"
     }
   ],
@@ -27,8 +39,39 @@
     {
       "src": "/screenshot.png",
       "sizes": "640x640",
-      "type": "image/jpeg",
-      "form_factor": "narrow"
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "App on Mobile"
+    },
+    {
+      "src": "/screenshot.png",
+      "sizes": "640x640",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "App on Desktop"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "New Task",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "View Tasks",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
 }
