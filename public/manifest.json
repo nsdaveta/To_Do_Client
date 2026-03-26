@@ -57,5 +57,8 @@
       ]
     }
   ],
+  "note_taking": {
+    "new_note_url": "/"
+  },
   "prefer_related_applications": false
 }
