@@ -1,8 +1,8 @@
 {
-  "name": "todoapp",
+  "name": "To-Do-App",
   "private": true,
   "version": "1.0.5",
-  "author": "Navjot",
+  "author": "Navjot <navjot@example.com>",
   "main": "main.cjs",
   "type": "module",
   "description": "ToDoApp",
@@ -68,7 +68,8 @@
     },
     "linux": {
       "target": ["deb", "AppImage"],
-      "category": "Utility"
+      "category": "Utility",
+      "icon": "public/logo-512.png"
     }
   }
 }

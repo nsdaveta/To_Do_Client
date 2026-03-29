@@ -20,4 +20,10 @@ msi:
   createDesktopShortcut: true
   createStartMenuShortcut: true
   runAfterFinish: false
+linux:
+  target:
+    - deb
+    - AppImage
+  category: Utility
+  icon: public/logo-512.png
 electronVersion: 41.1.0
