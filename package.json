@@ -1,15 +1,21 @@
 {
-  "name": "to_do_list",
+  "name": "todoapp",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.5",
+  "author": "Navjot",
+  "main": "main.cjs",
   "type": "module",
+  "description": "ToDoApp",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "electron": "electron main.cjs",
+    "package": "electron-builder build --win"
   },
   "dependencies": {
+    "@capacitor/core": "^8.3.0",
     "axios": "^1.13.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -18,10 +24,14 @@
     "react-toastify": "^11.0.5"
   },
   "devDependencies": {
+    "@capacitor/android": "^8.3.0",
+    "@capacitor/cli": "^8.3.0",
     "@eslint/js": "^9.39.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "electron": "^41.1.0",
+    "electron-builder": "^26.8.1",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
@@ -30,5 +40,35 @@
   },
   "overrides": {
     "vite": "^8.0.0-beta.13"
+  },
+  "build": {
+    "appId": "com.todoapp.native",
+    "productName": "To-Do App",
+    "copyright": "2026 Navjot",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "dist",
+      "main.cjs",
+      "package.json"
+    ],
+    "win": {
+      "target": "msi",
+      "executableName": "ToDoApp",
+      "icon": "public/logo-512.png"
+    },
+    "msi": {
+      "oneClick": false,
+      "perMachine": true,
+      "shortcutName": "To-Do App",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": false
+    },
+    "linux": {
+      "target": ["deb", "AppImage"],
+      "category": "Utility"
+    }
   }
 }

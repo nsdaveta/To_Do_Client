@@ -16,7 +16,7 @@ function App()
     <div className="App">
       <ToastContainer hideProgressBar={true} autoClose={2000} position="top-right" theme="colored" />
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route index element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/verify-otp' element={<VerifyOtp/>}/>
