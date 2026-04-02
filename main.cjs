@@ -10,6 +10,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
+      devTools: false,
       // preload: path.join(__dirname, 'preload.js') // Uncomment if you create a preload.js
     },
     icon: path.join(__dirname, 'public/favicon.ico'),
@@ -24,7 +25,28 @@ function createWindow() {
 
   // Hide menu bar for a native app feel
   mainWindow.setMenuBarVisibility(false);
+
+  // Disable right-click context menu
+  mainWindow.webContents.on('context-menu', (e) => {
+    e.preventDefault();
+  });
+
+  // Disable developer tools keyboard shortcuts
+  mainWindow.webContents.on('before-input-event', (event, input) => {
+    // Disable F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
+    if (
+      input.control &&
+      input.shift &&
+      (input.key.toLowerCase() === 'i' || input.key.toLowerCase() === 'j' || input.key.toLowerCase() === 'c')
+    ) {
+      event.preventDefault();
+    }
+    if (input.key === 'F12') {
+      event.preventDefault();
+    }
+  });
 }
+
 
 app.whenReady().then(() => {
   createWindow();

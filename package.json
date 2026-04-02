@@ -25,7 +25,11 @@
   },
   "devDependencies": {
     "@capacitor/android": "^8.3.0",
+    "@capacitor/app": "^8.1.0",
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^8.3.0",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/keyboard": "^8.0.2",
     "@eslint/js": "^9.39.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
@@ -56,7 +60,8 @@
     "win": {
       "target": "msi",
       "executableName": "ToDoApp",
-      "icon": "public/logo-512.png"
+      "icon": "public/logo-512.png",
+      "forceCodeSigning": false
     },
     "msi": {
       "oneClick": false,
@@ -67,7 +72,10 @@
       "runAfterFinish": false
     },
     "linux": {
-      "target": ["deb", "AppImage"],
+      "target": [
+        "deb",
+        "AppImage"
+      ],
       "category": "Utility",
       "icon": "public/logo-512.png"
     }

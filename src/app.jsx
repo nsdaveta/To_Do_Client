@@ -9,9 +9,12 @@ import Register from './Register';
 import Login from './Login';
 import VerifyOtp from './VerifyOtp';
 import ForgotPassword from './ForgotPassword';
+import useBackButton from './hooks/useBackButton';
 
 function App() 
 {  
+  useBackButton();
+
   return(
     <div className="App">
       <ToastContainer hideProgressBar={true} autoClose={2000} position="top-right" theme="colored" />
