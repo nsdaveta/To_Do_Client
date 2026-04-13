@@ -5,6 +5,7 @@ import './to-do.css';
 import ToDoItem from './To-Do_Item';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { hapticImpact, hapticNotification } from './hooks/useHaptics';
 
 const To_Do = () => 
     {
@@ -44,6 +45,7 @@ const To_Do = () =>
                 // Add the new item from server (with _id) to state
                 const newTodo = { ...result.data, id: result.data._id };
                 setToDoData([...ToDoData, newTodo]);
+                hapticImpact('medium');
                 toast.success('Task'+' ('+InputValue+') '+'Added To The To-Do List Successfully!!!',{theme:'colored',position:'top-center',draggable:false})
                 setInputValue('');
             })
@@ -109,6 +111,7 @@ const To_Do = () =>
             .then(() => {
                 const remaining = ToDoData.filter(t => !t.IsCompleted);
                 setToDoData(remaining);
+                hapticNotification('warning');
                 toast.info('Completed tasks cleared.',{theme:'colored',position:'top-center',draggable:false});
             })
             .catch(err => {
@@ -129,6 +132,7 @@ const To_Do = () =>
             .then(() => {
                 const updated = ToDoData.map(t => ({...t, IsCompleted: true}));
                 setToDoData(updated);
+                hapticNotification('success');
                 toast.success('All tasks marked as completed!',{theme:'colored',position:'top-center',draggable:false});
             })
             .catch(err => {

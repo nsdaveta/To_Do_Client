@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { App } from '@capacitor/app';
 import { toast } from 'react-toastify';
+import { listen } from '@tauri-apps/api/event';
 
 const useBackButton = () => {
     const location = useLocation();
@@ -24,7 +24,9 @@ const useBackButton = () => {
                 const currentTime = Date.now();
                 if (currentTime - lastPressTime.current < 2000) {
                     // Double-tap within 2 seconds → exit the app
-                    App.exitApp();
+                    if (window.__TAURI__) {
+                        window.close();
+                    }
                 } else {
                     lastPressTime.current = currentTime;
                     toast.info('Press back again to exit', {
@@ -39,10 +41,14 @@ const useBackButton = () => {
             }
         };
 
-        const listenerPromise = App.addListener('backButton', handleBackButton);
+        let unlistenTauri;
+        const setupTauriListener = async () => {
+            unlistenTauri = await listen('tauri://back-button', handleBackButton);
+        };
+        setupTauriListener();
 
         return () => {
-            listenerPromise.then(l => l.remove());
+            if (unlistenTauri) unlistenTauri();
         };
     }, []); // Empty deps: register once, refs handle dynamic values
 };

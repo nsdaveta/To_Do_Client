@@ -58,6 +58,12 @@
   align-items: center;
 }
 
+/* Hide default eye icon in Internet Explorer/Edge */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
 .password-input-wrapper input {
   padding-right: 45px; /* Space for the toggle icon */
 }

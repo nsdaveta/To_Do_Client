@@ -6,6 +6,7 @@ import { TfiSave } from "react-icons/tfi";
 import { FaUndo } from "react-icons/fa";
 import './to-do-item.css'
 import { toast } from 'react-toastify';
+import { hapticImpact, hapticNotification } from './hooks/useHaptics';
 
 const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
 
@@ -35,6 +36,7 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
                                 <button
                                     onClick={() => {
                                         Done(todo.id);
+                                        hapticNotification('success');
                                         toast.success(`Task ${index} completed successfully!`, {
                                             theme: 'colored',
                                             position: 'top-center',
@@ -47,6 +49,7 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
                                 <button
                                     onClick={() => {
                                         setIsUpdating(true);
+                                        hapticImpact('light');
                                         toast.info(`Updating Task ${index}`, {
                                             theme: 'colored',
                                             position: 'top-center',
@@ -64,6 +67,7 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
                                 <button
                                     onClick={() => {
                                         Update_List(todo.id, InputValue);
+                                        hapticImpact('medium');
                                         setIsUpdating(false);
                                         toast.success(`Task ${index} updated successfully!`, {
                                             theme: 'colored',
@@ -84,6 +88,7 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
                                 className="Delete"
                                 onClick={() => {
                                     Delete_From_List(todo.id);
+                                    hapticNotification('error');
                                     toast.error(`Task ${index} deleted from the list successfully!!!.`, {theme:'colored',position:'top-center',draggable:false})
                                 }}
                             >
@@ -92,6 +97,7 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
                             <button
                                 onClick={() => {
                                     Undo(todo.id);
+                                    hapticImpact('light');
                                     toast.info(`Task ${index} marked as not completed.`, {
                                         theme: 'colored',
                                         position: 'top-center',
