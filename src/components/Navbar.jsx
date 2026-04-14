@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useDialog } from './Dialog/DialogContext';
 import './navbar.css';
 
 const Navbar = () => {
     const [token, setToken] = useState(localStorage.getItem('token'));
     const [username, setUsername] = useState(localStorage.getItem('username'));
     const navigate = useNavigate();
+    const { ask } = useDialog();
 
     useEffect(() => {
         const handleAuthChange = () => {
@@ -19,7 +21,14 @@ const Navbar = () => {
         };
     }, []);
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        const confirmed = await ask('Are you sure you want to logout?', {
+            title: 'Logout',
+            kind: 'info'
+        });
+        
+        if (!confirmed) return;
+
         localStorage.removeItem('token');
         localStorage.removeItem('userEmail');
         localStorage.removeItem('username');

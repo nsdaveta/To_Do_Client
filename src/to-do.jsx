@@ -6,12 +6,14 @@ import ToDoItem from './To-Do_Item';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { hapticImpact, hapticNotification } from './hooks/useHaptics';
+import { useDialog } from './components/Dialog/DialogContext';
 
 const To_Do = () => 
     {
         const [InputValue,setInputValue] = useState('');
         const [ToDoData,setToDoData] = useState([]);
         const navigate = useNavigate();
+        const { ask } = useDialog();
 
         useEffect(() => {
             const token = localStorage.getItem('token');
@@ -98,7 +100,7 @@ const To_Do = () =>
             })
             .catch(err => console.log(err));
         }
-        const Clear_All = () =>
+        const Clear_All = async () =>
         {
             // remove only completed tasks
             const completed = ToDoData.filter(t => t.IsCompleted);
@@ -106,6 +108,14 @@ const To_Do = () =>
                 toast.error('No completed tasks to clear.',{theme:'colored',position:'top-center',draggable:false});
                 return;
             }
+
+            const confirmed = await ask('Are you sure you want to clear all completed tasks?', {
+                title: 'Clear Completed',
+                kind: 'warning'
+            });
+
+            if (!confirmed) return;
+
             // Delete all completed tasks from server
             Promise.all(completed.map(t => api.delete(`/delete/${t.id}`)))
             .then(() => {
@@ -120,13 +130,21 @@ const To_Do = () =>
             });
         }
 
-        const Mark_All_Completed = () => {
+        const Mark_All_Completed = async () => {
             // update all uncompleted tasks
             const uncompleted = ToDoData.filter(t => !t.IsCompleted);
             if (uncompleted.length === 0) {
                 toast.info('All tasks are already completed.',{theme:'colored',position:'top-center',draggable:false});
                 return;
             }
+
+            const confirmed = await ask('Mark all remaining tasks as completed?', {
+                title: 'Mark All Done',
+                kind: 'info'
+            });
+
+            if (!confirmed) return;
+
             // Update all uncompleted tasks on server
             Promise.all(uncompleted.map(t => api.put(`/update/${t.id}`, { IsCompleted: true })))
             .then(() => {
@@ -143,35 +161,48 @@ const To_Do = () =>
   return (
     <>
     <title>To Do App - Tasks</title>
-    <div className="To-Do">
-        <div className="todo-header">
-            <h1>To-Do List</h1>
-            <button className="logout-btn" onClick={() => { localStorage.removeItem('token'); navigate('/login'); }}>Logout</button>
-        </div>
-        <form onSubmit={(e)=>{e.preventDefault();Add_To_List();}}>
-            <input value={InputValue} onChange={(e)=>setInputValue(e.target.value)} type='text' placeholder='Enter something to add to the To-Do List'/>
-            <button type="submit">Add to To-Do list<FaPencilAlt size={13} color='green'/></button>
-        </form>
-        {
-            // guard against null and render each item cleanly
-            ToDoData && ToDoData.map((todo, index) => (
-                <ToDoItem
-                    key={todo.id}
-                    index={index + 1}
-                    todo={todo}
-                    Delete_From_List={Delete_From_List}
-                    Update_List={Update_List}
-                    Done={Done}
-                    Undo={Undo}
-                />
-            ))
-        }
-        {ToDoData && ToDoData.length > 0 && (
-            <div className="clear-btn-container">
-                <button className="mark-all-btn" onClick={Mark_All_Completed}>Mark All Completed</button>
-                <button className="clear-all-btn" onClick={Clear_All}>Clear Completed</button>
+    <div className="To_Do_Container">
+        <div className="To-Do">
+            <div className="todo-header">
+                <h1>To-Do List</h1>
+                <button className="logout-btn" onClick={async () => {
+                    const confirmed = await ask('Are you sure you want to logout?', {
+                        title: 'Logout',
+                        kind: 'info'
+                    });
+                    if (confirmed) {
+                        localStorage.removeItem('token');
+                        navigate('/login');
+                    }
+                }}>Logout</button>
             </div>
-        )}
+            <form className="input-form" onSubmit={(e)=>{e.preventDefault();Add_To_List();}}>
+                <input value={InputValue} onChange={(e)=>setInputValue(e.target.value)} type='text' placeholder='What needs to be done?'/>
+                <button type="submit" className="add-task-btn">Add Task <FaPencilAlt size={13} /></button>
+            </form>
+            <div className="todo-list-items">
+                {
+                    // guard against null and render each item cleanly
+                    ToDoData && ToDoData.map((todo, index) => (
+                        <ToDoItem
+                            key={todo.id}
+                            index={index + 1}
+                            todo={todo}
+                            Delete_From_List={Delete_From_List}
+                            Update_List={Update_List}
+                            Done={Done}
+                            Undo={Undo}
+                        />
+                    ))
+                }
+            </div>
+            {ToDoData && ToDoData.length > 0 && (
+                <div className="clear-btn-container">
+                    <button className="action-btn mark-all-btn" onClick={Mark_All_Completed}>Mark All Completed</button>
+                    <button className="action-btn clear-all-btn" onClick={Clear_All}>Clear Completed</button>
+                </div>
+            )}
+        </div>
     </div>
     </>          
   )

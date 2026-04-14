@@ -23,9 +23,29 @@ struct ProcessOutput {
 
 const HARDCODED_PROJECT_DIR: &str = "C:\\Users\\nsdav\\OneDrive\\Desktop\\MERN_STACK\\To_Do_List\\To_Do_Client";
 
+fn find_project_root() -> String {
+    let current_dir = std::env::current_dir().unwrap_or_else(|_| Path::new(".").to_path_buf());
+    
+    // Check current and parents for a Tauri project that isn't the build-manager itself
+    let mut path = current_dir;
+    for _ in 0..4 {
+        let tauri_conf = path.join("src-tauri").join("tauri.conf.json");
+        if tauri_conf.exists() && !path.ends_with("build-manager") {
+            return path.to_string_lossy().to_string();
+        }
+        if let Some(parent) = path.parent() {
+            path = parent.to_path_buf();
+        } else {
+            break;
+        }
+    }
+    
+    HARDCODED_PROJECT_DIR.to_string()
+}
+
 #[tauri::command]
 fn get_project_path() -> String {
-    HARDCODED_PROJECT_DIR.to_string()
+    find_project_root()
 }
 
 #[tauri::command]
@@ -120,7 +140,8 @@ fn run_step(window: &Window, step_id: &str, command: &str, args: Vec<&str>, cwd:
 
 #[tauri::command]
 async fn run_build(window: Window, target: String) -> Result<(), String> {
-    let project_dir = HARDCODED_PROJECT_DIR;
+    let project_dir_str = find_project_root();
+    let project_dir = project_dir_str.as_str();
 
     // Step 1: Git Sync (Only once)
     window.emit("step-update", StepUpdate { step: "git".to_string(), status: "active".to_string() }).unwrap();
