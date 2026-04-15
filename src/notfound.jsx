@@ -6,7 +6,7 @@ const NotFound = () => {
   return (
     <>
     <title>To Do App - Page Not Found</title>
-    <div className="home-landing">
+    <div className="home-landing glass-card">
         <h1 style={{ fontSize: '8rem', opacity: '0.2', marginBottom: '-2rem' }}>404</h1>
         <h2>Page Not Found</h2>
         <p>The page you're looking for doesn't exist or has been moved.</p>

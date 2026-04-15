@@ -1,62 +1,65 @@
 .navbar {
-  padding: 1.2rem 2.5rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--glass-border);
+  padding: 0.8rem 2.5rem;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .nav-brand {
   color: var(--text-main);
   text-decoration: none;
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-family: 'Outfit', sans-serif;
-  letter-spacing: -0.5px;
+  letter-spacing: -1px;
   display: flex;
   align-items: center;
 }
 
 .nav-brand span {
-  color: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-left: 2px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 8px;
 }
 
 .nav-link {
   color: var(--text-muted);
   text-decoration: none;
-  padding: 8px 18px;
+  padding: 10px 20px;
   border-radius: 12px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid transparent;
 }
 
 .nav-link:hover {
   color: var(--text-main);
-  background: rgba(255, 255, 255, 0.05);
-  border-color: var(--glass-border);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
 }
 
 .nav-link.active {
-  color: var(--text-main);
-  background: rgba(99, 102, 241, 0.1);
-  border-color: rgba(99, 102, 241, 0.3);
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+  color: white;
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
 }
 
 .user-info {

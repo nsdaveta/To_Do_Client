@@ -6,6 +6,7 @@ import ToDoItem from './To-Do_Item';
 import { useDialog } from './components/Dialog/DialogContext';
 import { toast } from 'react-toastify';
 import { hapticImpact, hapticNotification } from './hooks/useHaptics';
+import { FiCheckCircle, FiLogIn, FiUserPlus, FiPlus, FiArrowRightCircle } from 'react-icons/fi';
 
 const Home = () => {
     const [todos, setTodos] = useState([]);
@@ -106,12 +107,30 @@ const Home = () => {
         return (
             <>
             <title>To Do App - Home</title>
-            <div className="home-landing">
+            <div className="home-landing glass-card">
+                <div className="landing-icon">
+                    <FiCheckCircle size={60} color="var(--primary)" />
+                </div>
                 <h1>Organize Your Life</h1>
                 <p>A simple, elegant way to keep track of your daily tasks and boost your productivity.</p>
                 <div className="landing-actions">
-                    <Link to="/login" className="primary-btn" style={{ padding: '14px 40px', borderRadius: '12px' }}>Get Started</Link>
-                    <Link to="/register" className="secondary-btn" style={{ padding: '14px 40px', borderRadius: '12px' }}>Create Account</Link>
+                    <Link to="/login" className="primary-btn landing-btn">
+                        <FiLogIn size={18} /> Get Started
+                    </Link>
+                    <Link to="/register" className="secondary-btn landing-btn">
+                        <FiUserPlus size={18} /> Create Account
+                    </Link>
+                </div>
+                <div className="landing-features">
+                    <div className="feature-item">
+                        <span className="feature-dot"></span> Secure Authentication
+                    </div>
+                    <div className="feature-item">
+                        <span className="feature-dot"></span> Cloud Sync
+                    </div>
+                    <div className="feature-item">
+                        <span className="feature-dot"></span> Responsive Design
+                    </div>
                 </div>
             </div>
             </>
@@ -121,21 +140,32 @@ const Home = () => {
     return (
         <>
         <title>To Do App - Home</title>
-        <div className="home-container">
+        <div className="home-container glass-panel">
             <div className="home-header">
-                <h1>My Tasks</h1>
-                <Link to="/todos" className="view-all-link">Manage All Tasks →</Link>
+                <div>
+                    <h1>My Tasks</h1>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '-20px', marginBottom: '20px' }}>
+                        You have {todos.length} task{todos.length !== 1 ? 's' : ''} in total
+                    </p>
+                </div>
+                <Link to="/todos" className="view-all-link">
+                    Manage All <FiArrowRightCircle size={18} />
+                </Link>
             </div>
             
             <form onSubmit={handleAddTodo} className="todo-form">
-                <input 
-                    type="text" 
-                    value={newTodo} 
-                    onChange={(e) => setNewTodo(e.target.value)} 
-                    placeholder="What needs to be done?" 
-                    className="todo-input"
-                />
-                <button type="submit" className="add-btn">Add Task</button>
+                <div className="input-wrapper">
+                    <input 
+                        type="text" 
+                        value={newTodo} 
+                        onChange={(e) => setNewTodo(e.target.value)} 
+                        placeholder="What needs to be done?" 
+                        className="todo-input"
+                    />
+                </div>
+                <button type="submit" className="add-btn">
+                    <FiPlus size={20} /> Add
+                </button>
             </form>
 
             <div className="todo-list-preview">

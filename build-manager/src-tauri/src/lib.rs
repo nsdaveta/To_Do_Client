@@ -21,31 +21,13 @@ struct ProcessOutput {
     is_error: bool,
 }
 
-const HARDCODED_PROJECT_DIR: &str = "C:\\Users\\nsdav\\OneDrive\\Desktop\\MERN_STACK\\To_Do_List\\To_Do_Client";
-
-fn find_project_root() -> String {
-    let current_dir = std::env::current_dir().unwrap_or_else(|_| Path::new(".").to_path_buf());
-    
-    // Check current and parents for a Tauri project that isn't the build-manager itself
-    let mut path = current_dir;
-    for _ in 0..4 {
-        let tauri_conf = path.join("src-tauri").join("tauri.conf.json");
-        if tauri_conf.exists() && !path.ends_with("build-manager") {
-            return path.to_string_lossy().to_string();
-        }
-        if let Some(parent) = path.parent() {
-            path = parent.to_path_buf();
-        } else {
-            break;
-        }
-    }
-    
-    HARDCODED_PROJECT_DIR.to_string()
-}
-
+// Dynamic project directory detection: assume the project root is parent of the build-manager folder
 #[tauri::command]
 fn get_project_path() -> String {
-    find_project_root()
+    let current = std::env::current_dir().unwrap_or_else(|_| std::path::PathBuf::from("."));
+    // If the tool is in 'build-manager' folder, the project root is '..'
+    let parent = current.parent().unwrap_or(&current);
+    parent.to_string_lossy().to_string()
 }
 
 #[tauri::command]
@@ -66,22 +48,25 @@ fn check_admin() -> bool {
 
 #[tauri::command]
 fn reveal_in_explorer(path: String) -> Result<(), String> {
-    let path = Path::new(&path);
-    if !path.exists() {
-        return Err("Path does not exist".to_string());
+    let path_buf = std::path::PathBuf::from(&path);
+    if !path_buf.exists() {
+        return Err(format!("Path does not exist: {}", path));
     }
     
     #[cfg(target_os = "windows")]
     {
-        if path.is_dir() {
-            Command::new("explorer")
-                .arg(path)
+        let win_path = path.replace("/", "\\");
+        if path_buf.is_dir() {
+            Command::new("cmd")
+                .args(["/c", "start", "", &win_path])
+                .creation_flags(CREATE_NO_WINDOW)
                 .spawn()
                 .map_err(|e| e.to_string())?;
         } else {
             Command::new("explorer")
                 .arg("/select,")
-                .arg(path)
+                .arg(&win_path)
+                .creation_flags(CREATE_NO_WINDOW)
                 .spawn()
                 .map_err(|e| e.to_string())?;
         }
@@ -97,7 +82,7 @@ fn run_step(window: &Window, step_id: &str, command: &str, args: Vec<&str>, cwd:
     cmd.creation_flags(CREATE_NO_WINDOW);
 
     let mut child = cmd.args(["-ExecutionPolicy", "Bypass", "-Command"])
-        .arg(format!("{} {}", command, args.join(" "))) // PowerShell still likes the command string sometimes
+        .arg(format!("{} {}", command, args.join(" ")))
         .current_dir(cwd)
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
@@ -140,8 +125,7 @@ fn run_step(window: &Window, step_id: &str, command: &str, args: Vec<&str>, cwd:
 
 #[tauri::command]
 async fn run_build(window: Window, target: String) -> Result<(), String> {
-    let project_dir_str = find_project_root();
-    let project_dir = project_dir_str.as_str();
+    let project_dir = get_project_path();
 
     // Step 1: Git Sync (Only once)
     window.emit("step-update", StepUpdate { step: "git".to_string(), status: "active".to_string() }).unwrap();
@@ -150,24 +134,25 @@ async fn run_build(window: Window, target: String) -> Result<(), String> {
     #[cfg(target_os = "windows")]
     cmd.creation_flags(CREATE_NO_WINDOW);
 
-    // Check if there are changes to commit
     let status_output = cmd.args(["status", "--porcelain"])
-        .current_dir(project_dir)
+        .current_dir(&project_dir)
         .output()
         .map_err(|e| format!("Failed to check git status: {}", e))?;
     
     if !status_output.stdout.is_empty() {
-        run_step(&window, "git", "git", vec!["add", "."], project_dir)?;
-        run_step(&window, "git", "git", vec!["commit", "-m", "'Sync before build (automated)'"], project_dir)?;
-        let _ = run_step(&window, "git", "git", vec!["push"], project_dir);
+        run_step(&window, "git", "git", vec!["add", "."], &project_dir)?;
+        run_step(&window, "git", "git", vec!["commit", "-m", "'Sync before build (automated)'"], &project_dir)?;
+        let _ = run_step(&window, "git", "git", vec!["push"], &project_dir);
     } else {
         window.emit("process-output", ProcessOutput { content: "Working tree clean, skipping commit.".to_string(), is_error: false }).unwrap();
-        let _ = run_step(&window, "git", "git", vec!["push"], project_dir);
+        let _ = run_step(&window, "git", "git", vec!["push"], &project_dir);
     }
     window.emit("step-update", StepUpdate { step: "git".to_string(), status: "completed".to_string() }).unwrap();
 
     let targets = if target == "all" {
         vec!["windows-x64", "windows-x86", "android"]
+    } else if target == "windows-both" {
+        vec!["windows-x64", "windows-x86"]
     } else {
         vec![target.as_str()]
     };
@@ -202,11 +187,11 @@ async fn run_build(window: Window, target: String) -> Result<(), String> {
 
         // Step 3: Build
         if current_target == "android" {
-            run_step(&window, "build", "npx", vec!["tauri", "android", "build"], project_dir)?;
+            run_step(&window, "build", "npx", vec!["tauri", "android", "build"], &project_dir)?;
         } else if current_target == "windows-x86" {
-            run_step(&window, "build", "npm", vec!["run", "tauri:build:x86"], project_dir)?;
+            run_step(&window, "build", "npm", vec!["run", "tauri:build:x86"], &project_dir)?;
         } else if current_target == "windows-x64" {
-            run_step(&window, "build", "npm", vec!["run", "tauri:build"], project_dir)?;
+            run_step(&window, "build", "npm", vec!["run", "tauri:build"], &project_dir)?;
         } else {
             return Err(format!("Unknown target: {}", current_target));
         }
@@ -220,12 +205,37 @@ async fn run_build(window: Window, target: String) -> Result<(), String> {
     Ok(())
 }
 
+#[tauri::command]
+fn get_project_name() -> String {
+    let project_path = get_project_path();
+    let pkg_path = std::path::Path::new(&project_path).join("package.json");
+    
+    if let Ok(content) = std::fs::read_to_string(pkg_path) {
+        if let Ok(json) = serde_json::from_str::<serde_json::Value>(&content) {
+            if let Some(name) = json.get("name").and_then(|v| v.as_str()) {
+                // Capitalize first letter and replace hyphens with spaces for a cleaner look
+                let formatted = name.split(['-', '_'])
+                    .map(|s| {
+                        let mut c = s.chars();
+                        match c.next() {
+                            None => String::new(),
+                            Some(f) => f.to_uppercase().collect::<String>() + c.as_str(),
+                        }
+                    })
+                    .collect::<Vec<String>>()
+                    .join(" ");
+                return format!("{} Build Manager", formatted);
+            }
+        }
+    }
+    "Project Build Manager".to_string()
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![run_build, check_admin, reveal_in_explorer, get_project_path])
+        .invoke_handler(tauri::generate_handler![run_build, check_admin, reveal_in_explorer, get_project_path, get_project_name])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
-

@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { hapticImpact, hapticNotification } from './hooks/useHaptics';
 import { useDialog } from './components/Dialog/DialogContext';
+import { playSuccessSound, playClickSound, playDeleteSound, playCompleteAllSound } from './hooks/useSounds';
 
 const To_Do = () => 
     {
@@ -48,6 +49,7 @@ const To_Do = () =>
                 const newTodo = { ...result.data, id: result.data._id };
                 setToDoData([...ToDoData, newTodo]);
                 hapticImpact('medium');
+                playSuccessSound();
                 toast.success('Task'+' ('+InputValue+') '+'Added To The To-Do List Successfully!!!',{theme:'colored',position:'top-center',draggable:false})
                 setInputValue('');
             })
@@ -62,6 +64,7 @@ const To_Do = () =>
             .then(result => {
                 const NewToDoArray = ToDoData.filter(item => item.id !== id);
                 setToDoData(NewToDoArray);
+                playDeleteSound();
                 toast.success('Task Deleted Successfully!!!',{theme:'colored',position:'top-center',draggable:false})
             })
             .catch(err => {
@@ -151,6 +154,7 @@ const To_Do = () =>
                 const updated = ToDoData.map(t => ({...t, IsCompleted: true}));
                 setToDoData(updated);
                 hapticNotification('success');
+                playCompleteAllSound();
                 toast.success('All tasks marked as completed!',{theme:'colored',position:'top-center',draggable:false});
             })
             .catch(err => {
@@ -176,6 +180,18 @@ const To_Do = () =>
                     }
                 }}>Logout</button>
             </div>
+
+            {ToDoData && ToDoData.length > 0 && (
+                <div className="todo-progress-container">
+                    <div 
+                        className={`todo-progress-bar ${ToDoData.filter(t => t.IsCompleted).length === ToDoData.length ? 'full' : ''}`} 
+                        style={{ 
+                            width: `${(ToDoData.filter(t => t.IsCompleted).length / ToDoData.length) * 100}%` 
+                        }}
+                    />
+                </div>
+            )}
+
             <form className="input-form" onSubmit={(e)=>{e.preventDefault();Add_To_List();}}>
                 <input value={InputValue} onChange={(e)=>setInputValue(e.target.value)} type='text' placeholder='What needs to be done?'/>
                 <button type="submit" className="add-task-btn">Add Task <FaPencilAlt size={13} /></button>

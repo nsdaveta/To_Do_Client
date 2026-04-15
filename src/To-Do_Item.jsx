@@ -8,6 +8,7 @@ import './to-do-item.css'
 import { toast } from 'react-toastify';
 import { hapticImpact, hapticNotification } from './hooks/useHaptics';
 import { useDialog } from './components/Dialog/DialogContext';
+import { playClickSound, playSuccessSound } from './hooks/useSounds';
 
 const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
 
@@ -53,6 +54,7 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
                                     onClick={() => {
                                         Done(todo.id);
                                         hapticNotification('success');
+                                        playSuccessSound();
                                         toast.success(`Task ${index} completed!`, {
                                             theme: 'colored',
                                             position: 'top-center',
@@ -112,6 +114,7 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
                                 onClick={() => {
                                     Undo(todo.id);
                                     hapticImpact('light');
+                                    playClickSound();
                                     toast.info(`Task ${index} undone.`, {
                                         theme: 'colored',
                                         position: 'top-center',

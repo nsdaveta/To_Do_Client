@@ -1,16 +1,44 @@
-# React + Vite
+# To-Do App Pro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, glassmorphism-themed To-Do application built with **React**, **Vite**, and **Tauri**. Featuring a stunning UI, haptic feedback, audio cues, and a dedicated multi-target Build Manager.
 
-Currently, two official plugins are available:
+## ✨ Features
+- **Premium Glassmorphism UI**: High-resolution abstract backgrounds and blur effects.
+- **Cross-Platform**: Windows (x64/x86) and Android support.
+- **Interactive Feedback**: Haptic impact and melodic audio cues for actions.
+- **Secure Auth**: OTP-verified registration and secure login.
+- **Automated Builds**: Dedicated Build Manager tool for one-click distribution.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Getting Started
 
-## React Compiler
+### Prerequisites
+- Node.js & npm
+- Rust (for Tauri builds)
+- Git
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Installation
+```bash
+# Install dependencies
+npm install
 
-## Expanding the ESLint configuration
+# Run in development mode
+npm run tauri:dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Build Manager Pro
+
+The project includes a dedicated **Build Manager** tool located in the `/build-manager` directory. This tool automates the entire build and signing pipeline for all targets.
+
+### How to use:
+1. Navigate to the `build-manager` folder.
+2. Run `npm install` then `npm run dev` to launch the manager.
+3. Select your target (Windows x64, x86, or Android).
+4. The tool will:
+   - Sync your latest changes with Git.
+   - Verify build environment (Signtool, etc.).
+   - Compile the application.
+   - Automatically sign the Windows installers.
+   - Provide a direct link to the output folder.
+
+## 📄 License
+This project is for demonstration purposes.

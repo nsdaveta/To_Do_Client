@@ -9,7 +9,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const { ask } = useDialog();
 
-    useEffect(() => {
+    useEffect(() => { 
         const handleAuthChange = () => {
             setToken(localStorage.getItem('token'));
             setUsername(localStorage.getItem('username'));

@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tauri Build Master</title>
+  <title>To-Do Build Master</title>
   <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="icon" type="image/png" href="/logo-192.png" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 
@@ -13,7 +14,7 @@
   <div id="app">
     <div class="header">
       <div>
-        <h1>Build Manager Pro</h1>
+        <h1 id="main-title">Build Manager Pro</h1>
         <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
           <p style="color: #94a3b8; margin: 0;">Project:</p>
           <code id="project-path-display" style="background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; color: #60a5fa;">Loading...</code>
@@ -23,22 +24,30 @@
         </div>
       </div>
       <div class="header-actions">
-        <button id="build-x64" class="build-btn">
-          <i data-lucide="monitor"></i>
-          Windows x64
-        </button>
-        <button id="build-x86" class="build-btn">
-          <i data-lucide="monitor-dot"></i>
-          Windows x86
-        </button>
-        <button id="android-trigger" class="build-btn android-btn">
-          <i data-lucide="smartphone"></i>
-          Build Android
-        </button>
-        <button id="build-all" class="build-btn all-btn">
-          <i data-lucide="layers"></i>
-          Build All
-        </button>
+        <div class="button-group">
+          <button id="build-x64" class="build-btn" title="Build Windows x64">
+            <i data-lucide="monitor"></i>
+            Windows x64
+          </button>
+          <button id="build-x86" class="build-btn" title="Build Windows x86">
+            <i data-lucide="monitor-dot"></i>
+            Windows x86
+          </button>
+          <button id="build-windows-both" class="build-btn" title="Build x64 & x86">
+            <i data-lucide="monitor-check"></i>
+            Windows (Both)
+          </button>
+        </div>
+        <div class="button-group">
+          <button id="android-trigger" class="build-btn android-btn">
+            <i data-lucide="smartphone"></i>
+            Build Android
+          </button>
+          <button id="build-all" class="build-btn all-btn">
+            <i data-lucide="layers"></i>
+            Build All
+          </button>
+        </div>
       </div>
     </div>
 
