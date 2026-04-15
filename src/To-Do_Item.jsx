@@ -10,7 +10,7 @@ import { hapticImpact, hapticNotification } from './hooks/useHaptics';
 import { useDialog } from './components/Dialog/DialogContext';
 import { playClickSound, playSuccessSound, playUpdateStartSound, playUpdateSuccessSound } from './hooks/useSounds';
 
-const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
+const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo,isSimple}) => {
 
     const [isUpdating, setIsUpdating] = useState(false)
     const [InputValue,setInputValue] = useState(todo?.title || '')
@@ -44,6 +44,17 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
                         toast.error(`Task ${index} deleted.`, {theme:'colored',position:'top-center',draggable:false})
                     }
                 };
+                
+                if (isSimple) {
+                    return (
+                        <button
+                            className="icon-btn delete"
+                            onClick={handleDelete}
+                        >
+                            <MdDeleteOutline size={18} />
+                        </button>
+                    );
+                }
 
                 if (!completed) {
                     if (!isUpdating) {

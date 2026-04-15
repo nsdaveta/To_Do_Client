@@ -179,6 +179,7 @@ const Home = () => {
                             Update_List={handleUpdate}
                             Done={handleDone}
                             Undo={handleUndo}
+                            isSimple={true}
                         />
                     ))
                 ) : (
