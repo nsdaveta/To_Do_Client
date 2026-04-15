@@ -8,7 +8,7 @@ import './to-do-item.css'
 import { toast } from 'react-toastify';
 import { hapticImpact, hapticNotification } from './hooks/useHaptics';
 import { useDialog } from './components/Dialog/DialogContext';
-import { playClickSound, playSuccessSound } from './hooks/useSounds';
+import { playClickSound, playSuccessSound, playUpdateStartSound, playUpdateSuccessSound } from './hooks/useSounds';
 
 const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
 
@@ -69,6 +69,7 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
                                     onClick={() => {
                                         setIsUpdating(true);
                                         hapticImpact('light');
+                                        playUpdateStartSound();
                                     }}
                                 >
                                     <LuPencilLine size={18} />
@@ -88,6 +89,7 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo}) => {
                                 onClick={() => {
                                     Update_List(todo.id, InputValue);
                                     hapticImpact('medium');
+                                    playUpdateSuccessSound();
                                     setIsUpdating(false);
                                     toast.success(`Task ${index} updated!`, {
                                         theme: 'colored',

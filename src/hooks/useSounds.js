@@ -60,3 +60,16 @@ export const playCompleteAllSound = () => {
     setTimeout(() => playTone(659.25, 0.4), 120); // E5
     setTimeout(() => playTone(783.99, 0.6), 240); // G5
 };
+
+export const playUpdateStartSound = () => {
+    // Sharp but subtle mechanical blip
+    playTone(600, 0.1, 'sine', 0.08);
+    setTimeout(() => playTone(900, 0.05, 'sine', 0.05), 50);
+};
+
+export const playUpdateSuccessSound = () => {
+    // Quick rising harmonic sequence
+    playTone(440, 0.15, 'sine', 0.08); // A4
+    setTimeout(() => playTone(554.37, 0.15, 'sine', 0.07), 80); // C#5
+    setTimeout(() => playTone(659.25, 0.25, 'sine', 0.06), 160); // E5
+};
