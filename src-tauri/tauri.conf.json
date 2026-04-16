@@ -33,7 +33,6 @@
     "windows": {
       "signCommand": "c:\\Users\\nsdav\\OneDrive\\Desktop\\MERN_STACK\\To_Do_List\\To_Do_Client\\sign-app.bat %1",
       "nsis": {
-        "installerName": "To-Do-App-Setup",
         "installMode": "currentUser"
       }
     },
