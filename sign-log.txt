@@ -1,0 +1,10 @@
+"Called with: test.exe" 
+"Working directory is: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client" 
+Done Adding Additional Store
+Successfully signed: test.exe
+-------------------------------------------------- 
+[Wed 04/15/2026 22:06:36.04] Called with: test.exe 
+[Wed 04/15/2026 22:06:36.14] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client 
+Done Adding Additional Store
+Successfully signed: test.exe
+[Wed 04/15/2026 22:06:39.65] Successfully signed: test.exe 

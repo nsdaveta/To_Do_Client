@@ -21,13 +21,9 @@ struct ProcessOutput {
     is_error: bool,
 }
 
-// Dynamic project directory detection: assume the project root is parent of the build-manager folder
 #[tauri::command]
 fn get_project_path() -> String {
-    let current = std::env::current_dir().unwrap_or_else(|_| std::path::PathBuf::from("."));
-    // If the tool is in 'build-manager' folder, the project root is '..'
-    let parent = current.parent().unwrap_or(&current);
-    parent.to_string_lossy().to_string()
+    "C:\\Users\\nsdav\\OneDrive\\Desktop\\MERN_STACK\\To_Do_List\\To_Do_Client".to_string()
 }
 
 #[tauri::command]
