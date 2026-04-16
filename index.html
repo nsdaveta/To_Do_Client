@@ -17,15 +17,33 @@
     <script type="module" src="/src/main.jsx"></script>
     <script>
       // Service worker registration - only for web environments
-      if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').then(registration => {
-            console.log('SW registered: ', registration);
-          }).catch(error => {
-            console.log('SW registration failed: ', error);
+      // Tauri injects __TAURI_INTERNALS__ or __TAURI__ into the window
+      const isTauri = typeof window !== 'undefined' && (window.__TAURI_INTERNALS__ !== undefined || window.__TAURI__ !== undefined || window.__TAURI_IPC__ !== undefined);
+      
+      if ('serviceWorker' in navigator) {
+        if (isTauri) {
+          // Unregister any active service worker in Tauri
+          navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+              registration.unregister();
+              console.log('SW unregistered in Tauri environment');
+            }
           });
-        });
+        } else if (window.location.protocol !== 'file:') {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').then(registration => {
+              console.log('SW registered: ', registration);
+            }).catch(error => {
+              console.log('SW registration failed: ', error);
+            });
+          });
+        }
       }
+
+      // Automatically show the offline page if the device genuinely loses internet connection
+      window.addEventListener('offline', () => {
+        window.location.href = '/offline.html';
+      });
     </script>
   </body>
 </html>

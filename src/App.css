@@ -28,7 +28,7 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--bg-dark);
+  background: transparent; /* Critical for Mica/Acrylic transparency */
   color: var(--text-main);
   min-height: 100vh;
   overflow-x: hidden;

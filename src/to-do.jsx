@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { hapticImpact, hapticNotification } from './hooks/useHaptics';
 import { useDialog } from './components/Dialog/DialogContext';
-import { playSuccessSound, playClickSound, playDeleteSound, playCompleteAllSound } from './hooks/useSounds';
+import { playSuccessSound, playClickSound, playDeleteSound, playCompleteAllSound, playClearAllSound } from './hooks/useSounds';
 
 const To_Do = () => 
     {
@@ -125,6 +125,7 @@ const To_Do = () =>
                 const remaining = ToDoData.filter(t => !t.IsCompleted);
                 setToDoData(remaining);
                 hapticNotification('warning');
+                playClearAllSound();
                 toast.info('Completed tasks cleared.',{theme:'colored',position:'top-center',draggable:false});
             })
             .catch(err => {

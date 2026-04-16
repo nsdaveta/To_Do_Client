@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import './home.css';
 import ToDoItem from './To-Do_Item';
 import { useDialog } from './components/Dialog/DialogContext';
-import { toast } from 'react-toastify';
 import { hapticImpact, hapticNotification } from './hooks/useHaptics';
 import { FiCheckCircle, FiLogIn, FiUserPlus, FiPlus, FiArrowRightCircle } from 'react-icons/fi';
 
@@ -49,7 +48,6 @@ const Home = () => {
     const handleAddTodo = async (e) => {
         e.preventDefault();
         if (!newTodo.trim()) {
-            toast.error('Please enter a task.', {theme:'colored',position:'top-center'});
             return;
         }
         try {
@@ -58,10 +56,8 @@ const Home = () => {
             setTodos([...todos, addedTodo]);
             setNewTodo('');
             hapticImpact('medium');
-            toast.success('Task added!', {theme:'colored',position:'top-center'});
         } catch (err) {
             console.error("Error adding todo", err);
-            toast.error('Failed to add task.');
         }
     };
 
@@ -71,7 +67,6 @@ const Home = () => {
             setTodos(todos.filter(t => t.id !== id));
         } catch (err) {
             console.error("Error deleting todo", err);
-            toast.error('Failed to delete task.');
         }
     };
 
@@ -81,7 +76,6 @@ const Home = () => {
             setTodos(todos.map(item => item.id === id ? { ...item, title: data } : item));
         } catch (err) {
             console.error(err);
-            toast.error('Failed to update task.');
         }
     };
 

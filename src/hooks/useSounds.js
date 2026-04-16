@@ -71,5 +71,12 @@ export const playUpdateSuccessSound = () => {
     // Quick rising harmonic sequence
     playTone(440, 0.15, 'sine', 0.08); // A4
     setTimeout(() => playTone(554.37, 0.15, 'sine', 0.07), 80); // C#5
-    setTimeout(() => playTone(659.25, 0.25, 'sine', 0.06), 160); // E5
+    setTimeout(() => playTone(659.25, 0.25, 'sine', 0.25), 160); // E5
+};
+
+export const playClearAllSound = () => {
+    // Elegant sweeping "whoosh" sound for clearing items
+    playTone(500, 0.3, 'sine', 0.08);
+    playTone(400, 0.3, 'sine', 0.06);
+    setTimeout(() => playTone(300, 0.4, 'sine', 0.04), 100);
 };
