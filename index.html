@@ -40,9 +40,13 @@
         }
       }
 
-      // Automatically show the offline page if the device genuinely loses internet connection
       window.addEventListener('offline', () => {
-        window.location.href = '/offline.html';
+        // Wait 500ms to ensure the offline state is persistent and not a flicker
+        setTimeout(() => {
+          if (navigator.onLine === false) {
+            window.location.href = '/offline.html';
+          }
+        }, 500);
       });
     </script>
   </body>

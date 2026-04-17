@@ -123,7 +123,26 @@ fn run_step(window: &Window, step_id: &str, command: &str, args: Vec<&str>, cwd:
 async fn run_build(window: Window, target: String) -> Result<(), String> {
     let project_dir = get_project_path();
 
-    // Step 1: Git Sync (Only once)
+    if target == "quick-test" {
+        window.emit("process-output", ProcessOutput { 
+            content: "--- STARTING QUICK TEST (DEV MODE) ---".to_string(), 
+            is_error: false 
+        }).unwrap();
+        
+        // Skip Git and Env steps for quick test
+        window.emit("step-update", StepUpdate { step: "git".to_string(), status: "completed".to_string() }).unwrap();
+        window.emit("step-update", StepUpdate { step: "env".to_string(), status: "completed".to_string() }).unwrap();
+        
+        run_step(&window, "build", "npm", vec!["run", "tauri:dev"], &project_dir)?;
+        
+        window.emit("process-output", ProcessOutput { 
+            content: "--- QUICK TEST TERMINATED ---".to_string(), 
+            is_error: false 
+        }).unwrap();
+        return Ok(());
+    }
+
+    // Step 1: Git Sync (Only once for full builds)
     window.emit("step-update", StepUpdate { step: "git".to_string(), status: "active".to_string() }).unwrap();
     
     let mut cmd = Command::new("git");

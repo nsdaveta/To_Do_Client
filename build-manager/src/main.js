@@ -101,6 +101,7 @@ let buildBtnX86 = document.querySelector("#build-x86");
 let buildBtnBoth = document.querySelector("#build-windows-both");
 let androidBtn = document.querySelector("#android-trigger");
 let buildAllBtn = document.querySelector("#build-all");
+let quickTestBtn = document.querySelector("#quick-test");
 
 function showSuccessUI(target) {
   const container = document.querySelector(".terminal-container");
@@ -151,6 +152,7 @@ async function startBuild(target) {
   if (buildBtnBoth) buildBtnBoth.disabled = true;
   if (androidBtn) androidBtn.disabled = true;
   if (buildAllBtn) buildAllBtn.disabled = true;
+  if (quickTestBtn) quickTestBtn.disabled = true;
   
   let activeBtn;
   let originalText;
@@ -167,14 +169,22 @@ async function startBuild(target) {
   } else if (target === "android") {
     activeBtn = androidBtn;
     originalText = "Build Android";
+  } else if (target === "quick-test") {
+    activeBtn = quickTestBtn;
+    originalText = "Quick Test";
   } else {
     activeBtn = buildAllBtn;
     originalText = "Build All";
   }
   
-  if (activeBtn) activeBtn.textContent = "Building...";
+  if (activeBtn) activeBtn.textContent = target === "quick-test" ? "Testing..." : "Building...";
   terminal.innerHTML = "";
-  appendLog(`> Initializing ${target.toUpperCase()} build sequence...`, "command");
+  if (target === "quick-test") {
+     statusText.textContent = "Running Quick Test...";
+     appendLog(`> Initializing Quick Test (Dev Mode)...`, "command");
+  } else {
+     appendLog(`> Initializing ${target.toUpperCase()} build sequence...`, "command");
+  }
   
   // Reset UI
   Object.keys(steps).forEach(s => updateStep(s, null));
@@ -204,6 +214,7 @@ async function startBuild(target) {
     if (buildBtnBoth) buildBtnBoth.disabled = false;
     if (androidBtn) androidBtn.disabled = false;
     if (buildAllBtn) buildAllBtn.disabled = false;
+    if (quickTestBtn) quickTestBtn.disabled = false;
     stopTimer();
   }
 }
@@ -213,6 +224,7 @@ if (buildBtnX86) buildBtnX86.addEventListener("click", () => startBuild("windows
 if (buildBtnBoth) buildBtnBoth.addEventListener("click", () => startBuild("windows-both"));
 if (androidBtn) androidBtn.addEventListener("click", () => startBuild("android"));
 if (buildAllBtn) buildAllBtn.addEventListener("click", () => startBuild("all"));
+if (quickTestBtn) quickTestBtn.addEventListener("click", () => startBuild("quick-test"));
 
 // Initialization
 (async () => {
