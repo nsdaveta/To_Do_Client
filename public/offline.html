@@ -274,7 +274,7 @@
     </div>
 
     <script>
-        function retryConnection(e) {
+        async function retryConnection(e) {
             e.preventDefault();
             const btn = e.currentTarget;
             const icon = btn.querySelector('.refresh-icon');
@@ -288,12 +288,18 @@
             icon.style.animation = 'infiniteSpin 1s linear infinite';
             btn.innerHTML = icon.outerHTML + " Connecting...";
             
-            // Simulate network check before refreshing
-            setTimeout(() => {
-                if (navigator.onLine) {
-                    window.location.href = '/';
-                } else {
-                    // Still offline, reset button
+            try {
+                // Real check: try to fetch a known asset with cache-busting to bypass SW
+                await fetch('/logo-192.png?t=' + Date.now(), { 
+                    method: 'HEAD', 
+                    mode: 'no-cors', 
+                    cache: 'no-store' 
+                });
+                // If we reach this point, we are actually online
+                window.location.href = '/';
+            } catch (err) {
+                // Still truly offline
+                setTimeout(() => {
                     btn.disabled = false;
                     icon.style.animation = '';
                     btn.innerHTML = icon.outerHTML + " Try Again";
@@ -303,8 +309,8 @@
                     setTimeout(() => btn.style.transform = 'translateX(-5px)', 100);
                     setTimeout(() => btn.style.transform = 'translateX(5px)', 200);
                     setTimeout(() => btn.style.transform = 'translateX(0)', 300);
-                }
-            }, 800);
+                }, 1000);
+            }
         }
         
         // Listen for connection restoration automatically

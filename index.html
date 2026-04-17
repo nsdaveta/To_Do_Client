@@ -16,38 +16,50 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      // Service worker registration - only for web environments
-      // Tauri injects __TAURI_INTERNALS__ or __TAURI__ into the window
+      // Service worker and environment constants
       const isTauri = typeof window !== 'undefined' && (window.__TAURI_INTERNALS__ !== undefined || window.__TAURI__ !== undefined || window.__TAURI_IPC__ !== undefined);
-      
+      const isFileProtocol = window.location.protocol === 'file:';
+
+      // 1. Service Worker Management
       if ('serviceWorker' in navigator) {
         if (isTauri) {
-          // Unregister any active service worker in Tauri
-          navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            for(let registration of registrations) {
-              registration.unregister();
-              console.log('SW unregistered in Tauri environment');
-            }
+          // Unregister any active service worker in Tauri environment for better performance
+          navigator.serviceWorker.getRegistrations().then(registrations => {
+            for (let reg of registrations) reg.unregister();
           });
-        } else if (window.location.protocol !== 'file:') {
+        } else if (!isFileProtocol) {
+          // Register Service Worker for PWA functionality on Web
           window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js').then(registration => {
-              console.log('SW registered: ', registration);
-            }).catch(error => {
-              console.log('SW registration failed: ', error);
-            });
+            navigator.serviceWorker.register('/sw.js')
+              .then(reg => console.log('SW registered'))
+              .catch(err => console.log('SW registration failed:', err));
           });
         }
       }
 
-      window.addEventListener('offline', () => {
-        // Wait 500ms to ensure the offline state is persistent and not a flicker
-        setTimeout(() => {
-          if (navigator.onLine === false) {
-            window.location.href = '/offline.html';
-          }
-        }, 500);
-      });
+      // 2. Robust Offline Detection
+      if (!isFileProtocol) {
+        window.addEventListener('offline', () => {
+          // Wait 1500ms to confirm the offline state is persistent and not a flicker
+          setTimeout(async () => {
+            if (navigator.onLine === false) {
+              try {
+                // Persistent check: try to fetch a known asset with cache busting
+                await fetch('/logo-192.png?t=' + Date.now(), { 
+                  method: 'HEAD', 
+                  mode: 'no-cors', 
+                  cache: 'no-store' 
+                });
+                console.log('Connectivity flicker detected but restored. Staying online.');
+              } catch (e) {
+                // Confirmed truly offline
+                console.log('Confirmed offline state. Redirecting.');
+                window.location.href = 'offline.html';
+              }
+            }
+          }, 1500);
+        });
+      }
     </script>
   </body>
 </html>
