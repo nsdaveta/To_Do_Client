@@ -170,16 +170,6 @@ const To_Do = () =>
         <div className="To-Do">
             <div className="todo-header">
                 <h1>To-Do List</h1>
-                <button className="logout-btn" onClick={async () => {
-                    const confirmed = await ask('Are you sure you want to logout?', {
-                        title: 'Logout',
-                        kind: 'info'
-                    });
-                    if (confirmed) {
-                        localStorage.removeItem('token');
-                        navigate('/login');
-                    }
-                }}>Logout</button>
             </div>
 
             {ToDoData && ToDoData.length > 0 && (
