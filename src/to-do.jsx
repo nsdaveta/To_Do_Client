@@ -47,15 +47,16 @@ const To_Do = () =>
             .then(result => {
                 // Add the new item from server (with _id) to state
                 const newTodo = { ...result.data, id: result.data._id };
-                setToDoData([...ToDoData, newTodo]);
+                setToDoData(prev => [...prev, newTodo]);
                 hapticImpact('medium');
                 playSuccessSound();
                 toast.success('Task'+' ('+InputValue+') '+'Added To The To-Do List Successfully!!!',{theme:'colored',position:'top-center',draggable:false})
                 setInputValue('');
             })
             .catch(err => {
-                console.log(err);
-                toast.error('Failed to add task.',{theme:'colored',position:'top-center',draggable:false});
+                console.error('Task Addition Error:', err);
+                const msg = err.response?.data?.message || 'Failed to add task.';
+                toast.error(msg, { theme: 'colored', position: 'top-center', draggable: false });
             });
         }
         const Delete_From_List = (id)=>
@@ -63,9 +64,8 @@ const To_Do = () =>
             api.delete(`/delete/${id}`)
             .then(result => {
                 const NewToDoArray = ToDoData.filter(item => item.id !== id);
-                setToDoData(NewToDoArray);
+                setToDoData(prev => prev.filter(item => item.id !== id));
                 playDeleteSound();
-                toast.success('Task Deleted Successfully!!!',{theme:'colored',position:'top-center',draggable:false})
             })
             .catch(err => {
                 console.log(err);
@@ -77,7 +77,7 @@ const To_Do = () =>
             api.put(`/update/${id}`, { title: data })
             .then(result => {
                 const NewToDoArray = ToDoData.map(item => item.id === id ? { ...item, title: data } : item);
-                setToDoData(NewToDoArray);
+                setToDoData(prev => prev.map(item => item.id === id ? { ...item, title: data } : item));
             })
             .catch(err => {
                 console.log(err);
@@ -90,7 +90,7 @@ const To_Do = () =>
             api.put(`/update/${id}`, { IsCompleted: true })
             .then(result => {
                 const NewToDoArray = ToDoData.map(item => item.id === id ? { ...item, IsCompleted: true } : item);
-                setToDoData(NewToDoArray);
+                setToDoData(prev => prev.map(item => item.id === id ? { ...item, IsCompleted: true } : item));
             })
             .catch(err => console.log(err));
         }
@@ -99,7 +99,7 @@ const To_Do = () =>
             api.put(`/update/${id}`, { IsCompleted: false })
             .then(result => {
                 const NewToDoArray = ToDoData.map(item => item.id === id ? { ...item, IsCompleted: false } : item);
-                setToDoData(NewToDoArray);
+                setToDoData(prev => prev.map(item => item.id === id ? { ...item, IsCompleted: false } : item));
             })
             .catch(err => console.log(err));
         }
@@ -123,7 +123,7 @@ const To_Do = () =>
             Promise.all(completed.map(t => api.delete(`/delete/${t.id}`)))
             .then(() => {
                 const remaining = ToDoData.filter(t => !t.IsCompleted);
-                setToDoData(remaining);
+                setToDoData(prev => prev.filter(t => !t.IsCompleted));
                 hapticNotification('warning');
                 playClearAllSound();
                 toast.info('Completed tasks cleared.',{theme:'colored',position:'top-center',draggable:false});
@@ -153,7 +153,7 @@ const To_Do = () =>
             Promise.all(uncompleted.map(t => api.put(`/update/${t.id}`, { IsCompleted: true })))
             .then(() => {
                 const updated = ToDoData.map(t => ({...t, IsCompleted: true}));
-                setToDoData(updated);
+                setToDoData(prev => prev.map(t => ({...t, IsCompleted: true})));
                 hapticNotification('success');
                 playCompleteAllSound();
                 toast.success('All tasks marked as completed!',{theme:'colored',position:'top-center',draggable:false});

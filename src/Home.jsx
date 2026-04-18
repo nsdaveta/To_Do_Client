@@ -3,6 +3,7 @@ import api from './api';
 import { Link, useNavigate } from 'react-router-dom';
 import './home.css';
 import ToDoItem from './To-Do_Item';
+import { toast } from 'react-toastify';
 import { useDialog } from './components/Dialog/DialogContext';
 import { hapticImpact, hapticNotification } from './hooks/useHaptics';
 import { FiCheckCircle, FiLogIn, FiUserPlus, FiPlus, FiArrowRightCircle } from 'react-icons/fi';
@@ -53,18 +54,23 @@ const Home = () => {
         try {
             const res = await api.post('/add', { title: newTodo });
             const addedTodo = { ...res.data, id: res.data._id };
-            setTodos([...todos, addedTodo]);
+            setTodos(prev => [...prev, addedTodo]);
             setNewTodo('');
             hapticImpact('medium');
         } catch (err) {
             console.error("Error adding todo", err);
+            const msg = err.response?.data?.message || 'Failed to add task.';
+            // Home page usually has simpler error handling, but toast is good here
+            if (typeof toast !== 'undefined') {
+                toast.error(msg, { theme: 'colored', position: 'top-center' });
+            }
         }
     };
 
     const handleDelete = async (id) => {
         try {
             await api.delete(`/delete/${id}`);
-            setTodos(todos.filter(t => t.id !== id));
+            setTodos(prev => prev.filter(t => t.id !== id));
         } catch (err) {
             console.error("Error deleting todo", err);
         }
@@ -73,7 +79,7 @@ const Home = () => {
     const handleUpdate = async (id, data) => {
         try {
             await api.put(`/update/${id}`, { title: data });
-            setTodos(todos.map(item => item.id === id ? { ...item, title: data } : item));
+            setTodos(prev => prev.map(item => item.id === id ? { ...item, title: data } : item));
         } catch (err) {
             console.error(err);
         }
@@ -82,7 +88,7 @@ const Home = () => {
     const handleDone = async (id) => {
         try {
             await api.put(`/update/${id}`, { IsCompleted: true });
-            setTodos(todos.map(item => item.id === id ? { ...item, IsCompleted: true } : item));
+            setTodos(prev => prev.map(item => item.id === id ? { ...item, IsCompleted: true } : item));
         } catch (err) {
             console.error(err);
         }
@@ -91,7 +97,7 @@ const Home = () => {
     const handleUndo = async (id) => {
         try {
             await api.put(`/update/${id}`, { IsCompleted: false });
-            setTodos(todos.map(item => item.id === id ? { ...item, IsCompleted: false } : item));
+            setTodos(prev => prev.map(item => item.id === id ? { ...item, IsCompleted: false } : item));
         } catch (err) {
             console.error(err);
         }
@@ -138,7 +144,7 @@ const Home = () => {
             <div className="home-header">
                 <div>
                     <h1>My Tasks</h1>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '-20px', marginBottom: '20px' }}>
+                    <p className="task-count-label">
                         You have {todos.length} task{todos.length !== 1 ? 's' : ''} in total
                     </p>
                 </div>
@@ -170,10 +176,8 @@ const Home = () => {
                             index={index + 1}
                             todo={todo}
                             Delete_From_List={handleDelete}
-                            Update_List={handleUpdate}
-                            Done={handleDone}
-                            Undo={handleUndo}
                             isSimple={true}
+                            hideDeleteToast={true}
                         />
                     ))
                 ) : (

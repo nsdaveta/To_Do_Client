@@ -18,11 +18,6 @@
             --card-border: rgba(255, 255, 255, 0.1);
         }
 
-        body {
-            background-color: #0f172a !important; /* Force Dark Background */
-            color: #f8fafc;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -30,7 +25,7 @@
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #0f172a !important; /* Force Midnight Blue */
             color: #f8fafc;
             min-height: 100vh;
@@ -54,7 +49,7 @@
         .orb-1 {
             width: 400px;
             height: 400px;
-            background: #4f46e5;
+            background: rgba(99, 102, 241, 0.4);
             top: -100px;
             left: -100px;
             animation-delay: 0s;
@@ -63,7 +58,7 @@
         .orb-2 {
             width: 500px;
             height: 500px;
-            background: #ec4899;
+            background: rgba(236, 72, 153, 0.3);
             bottom: -200px;
             right: -100px;
             animation-delay: -5s;
@@ -72,12 +67,11 @@
         .orb-3 {
             width: 300px;
             height: 300px;
-            background: #8b5cf6;
+            background: rgba(139, 92, 246, 0.3);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             animation-delay: -10s;
-            opacity: 0.4;
         }
 
         @keyframes float {
@@ -274,49 +268,86 @@
     </div>
 
     <script>
+        // Shared robust connectivity check logic
+        async function checkActualConnectivity() {
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 4000);
+                
+                await fetch('https://to-do-server-1yuc.onrender.com/todos', { 
+                    method: 'HEAD', 
+                    mode: 'no-cors', 
+                    cache: 'no-store',
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                return true;
+            } catch (e) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 4000);
+                    await fetch('https://www.google.com/favicon.ico', { 
+                        method: 'HEAD', 
+                        mode: 'no-cors', 
+                        cache: 'no-store',
+                        signal: controller.signal
+                    });
+                    clearTimeout(timeoutId);
+                    return true;
+                } catch (e2) {
+                    return false;
+                }
+            }
+        }
+
         async function retryConnection(e) {
             e.preventDefault();
             const btn = e.currentTarget;
             const icon = btn.querySelector('.refresh-icon');
             
-            // Prevent multiple clicks
             if (btn.disabled) return;
             btn.disabled = true;
             
-            // Add a spinning class
+            const originalHTML = btn.innerHTML;
             icon.style.transition = 'none';
             icon.style.animation = 'infiniteSpin 1s linear infinite';
-            btn.innerHTML = icon.outerHTML + " Connecting...";
+            btn.innerHTML = icon.outerHTML + " Checking Connection...";
             
-            try {
-                // Real check: try to fetch a known asset with cache-busting to bypass SW
-                await fetch('/logo-192.png?t=' + Date.now(), { 
-                    method: 'HEAD', 
-                    mode: 'no-cors', 
-                    cache: 'no-store' 
-                });
+            const isOnline = await checkActualConnectivity();
+            
+            if (isOnline) {
                 // If we reach this point, we are actually online
                 window.location.href = '/';
-            } catch (err) {
+            } else {
                 // Still truly offline
                 setTimeout(() => {
                     btn.disabled = false;
                     icon.style.animation = '';
-                    btn.innerHTML = icon.outerHTML + " Try Again";
+                    btn.innerHTML = originalHTML;
                     
                     // Add a quick shake effect to indicate failure
                     btn.style.transform = 'translateX(5px)';
                     setTimeout(() => btn.style.transform = 'translateX(-5px)', 100);
                     setTimeout(() => btn.style.transform = 'translateX(5px)', 200);
                     setTimeout(() => btn.style.transform = 'translateX(0)', 300);
-                }, 1000);
+                }, 500);
             }
         }
         
         // Listen for connection restoration automatically
-        window.addEventListener('online', () => {
-             window.location.href = '/';
+        window.addEventListener('online', async () => {
+             const isOnline = await checkActualConnectivity();
+             if (isOnline) window.location.href = '/';
         });
+        
+        // Periodically check in background
+        setInterval(async () => {
+            if (navigator.onLine) {
+                const isOnline = await checkActualConnectivity();
+                if (isOnline) window.location.href = '/';
+            }
+        }, 5000);
     </script>
 </body>
 </html>
