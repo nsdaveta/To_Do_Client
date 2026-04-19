@@ -34,15 +34,10 @@ const Home = () => {
     const fetchTodos = async () => {
         try {
             const res = await api.get('/');
-            // Map _id to id for ToDoItem compatibility
-            setTodos(res.data.map(item => ({...item, id: item._id})));
+            // Map _id or id for ToDoItem compatibility
+            setTodos(res.data.map(item => ({...item, id: item._id || item.id})));
         } catch (err) {
             console.error("Error fetching todos", err);
-            if (err.response?.status === 401) {
-                localStorage.removeItem('token');
-                window.dispatchEvent(new Event('authChange'));
-                navigate('/login');
-            }
         }
     };
 
@@ -53,16 +48,16 @@ const Home = () => {
         }
         try {
             const res = await api.post('/add', { title: newTodo });
-            const addedTodo = { ...res.data, id: res.data._id };
+            const todoData = res.data.todo || res.data;
+            const addedTodo = { ...todoData, id: todoData._id || todoData.id };
             setTodos(prev => [...prev, addedTodo]);
             setNewTodo('');
             hapticImpact('medium');
         } catch (err) {
-            console.error("Error adding todo", err);
-            const msg = err.response?.data?.message || 'Failed to add task.';
-            // Home page usually has simpler error handling, but toast is good here
+            console.error('Task Addition Error:', err);
+            const msg = (typeof err.response?.data === 'object' ? err.response?.data?.message : err.response?.data) || (err.message === 'Network Error' ? 'Cannot connect to server.' : 'Failed to add task.');
             if (typeof toast !== 'undefined') {
-                toast.error(msg, { theme: 'colored', position: 'top-center' });
+                toast.error(msg, { theme: 'colored', position: 'top-center', draggable: false });
             }
         }
     };

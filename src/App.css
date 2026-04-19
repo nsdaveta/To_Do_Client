@@ -34,6 +34,23 @@ body {
   overflow-x: hidden;
 }
 
+body.lockdown {
+  user-select: none; /* Disable text selection */
+  -webkit-user-select: none;
+}
+
+
+body.lockdown input, 
+body.lockdown textarea {
+  user-select: text !important; /* Re-enable for inputs */
+  -webkit-user-select: text !important;
+}
+
+body.lockdown img {
+  -webkit-user-drag: none; /* Disable image dragging */
+}
+
+
 body::before {
   content: "";
   position: fixed;

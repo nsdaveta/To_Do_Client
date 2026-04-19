@@ -33,7 +33,8 @@ const playTone = (frequency, duration, type = 'sine', volume = 0.1) => {
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + duration);
     } catch (e) {
-        console.warn('Audio feedback blocked by browser:', e);
+        // Silently fail if audio is blocked or fails - prevents console spam in production
+        // console.debug('Audio feedback blocked by browser:', e);
     }
 };
 
@@ -79,4 +80,10 @@ export const playClearAllSound = () => {
     playTone(500, 0.3, 'sine', 0.08);
     playTone(400, 0.3, 'sine', 0.06);
     setTimeout(() => playTone(300, 0.4, 'sine', 0.04), 100);
+};
+
+export const playDialogAppearSound = () => {
+    // Soft, welcoming dual-tone chime for dialogs
+    playTone(660, 0.1, 'sine', 0.06);
+    setTimeout(() => playTone(880, 0.15, 'sine', 0.04), 60);
 };

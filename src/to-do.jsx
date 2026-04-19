@@ -24,15 +24,11 @@ const To_Do = () =>
             }
             api.get('/')
             .then(result => {
-                // Map _id to id for frontend compatibility
-                setToDoData(result.data.map(item => ({...item, id: item._id})));
+                // Map _id or id for frontend compatibility, ensuring unique keys even if server schema varies
+                setToDoData(result.data.map(item => ({...item, id: item._id || item.id})));
             })
             .catch(err => {
                 console.log(err);
-                if (err.response?.status === 401) {
-                    localStorage.removeItem('token');
-                    navigate('/login');
-                }
             })
         }, [navigate])
 
@@ -45,8 +41,9 @@ const To_Do = () =>
             }
             api.post('/add', { title: InputValue })
             .then(result => {
-                // Add the new item from server (with _id) to state
-                const newTodo = { ...result.data, id: result.data._id };
+                // Backend might return the todo object directly or nested as { todo: ... }
+                const todoData = result.data.todo || result.data;
+                const newTodo = { ...todoData, id: todoData._id || todoData.id };
                 setToDoData(prev => [...prev, newTodo]);
                 hapticImpact('medium');
                 playSuccessSound();
@@ -55,7 +52,7 @@ const To_Do = () =>
             })
             .catch(err => {
                 console.error('Task Addition Error:', err);
-                const msg = err.response?.data?.message || 'Failed to add task.';
+                const msg = (typeof err.response?.data === 'object' ? err.response?.data?.message : err.response?.data) || (err.message === 'Network Error' ? 'Cannot connect to server.' : 'Failed to add task.');
                 toast.error(msg, { theme: 'colored', position: 'top-center', draggable: false });
             });
         }

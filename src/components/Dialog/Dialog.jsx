@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDialog } from './DialogContext';
 import './Dialog.css';
+import { playDialogAppearSound } from '../../hooks/useSounds';
 
 const Dialog = () => {
     const { dialogConfig } = useDialog();
@@ -11,6 +12,7 @@ const Dialog = () => {
         if (dialogConfig) {
             setIsVisible(true);
             setIsClosing(false);
+            playDialogAppearSound();
         } else {
             setIsClosing(true);
             const timer = setTimeout(() => {
