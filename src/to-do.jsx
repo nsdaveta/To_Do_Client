@@ -35,27 +35,59 @@ const To_Do = () =>
         const Add_To_List = () =>
         {
             // prevent adding empty entries
-            if (!InputValue.trim()) {
+            const trimmedValue = InputValue.trim();
+            if (!trimmedValue) {
                 toast.error('Please enter a task before adding.',{theme:'colored',position:'top-center',draggable:false});
                 return;
             }
-            api.post('/add', { title: InputValue })
+
+            // Check if task already exists locally to avoid duplicates (optional UI improvement)
+            if (ToDoData.some(item => item.title.toLowerCase() === trimmedValue.toLowerCase())) {
+                toast.warning('This task already exists in your list.', {theme:'colored',position:'top-center',draggable:false});
+            }
+
+            api.post('/add', { title: trimmedValue })
             .then(result => {
                 // Backend might return the todo object directly or nested as { todo: ... }
-                const todoData = result.data.todo || result.data;
+                // Use optional chaining and default to empty object
+                const responseData = result?.data || {};
+                const todoData = responseData.todo || (typeof responseData === 'object' ? responseData : null);
+                
+                if (!todoData) {
+                    throw new Error('Invalid response from server');
+                }
+
                 const newTodo = { ...todoData, id: todoData._id || todoData.id };
                 setToDoData(prev => [...prev, newTodo]);
                 hapticImpact('medium');
                 playSuccessSound();
-                toast.success('Task'+' ('+InputValue+') '+'Added To The To-Do List Successfully!!!',{theme:'colored',position:'top-center',draggable:false})
+                toast.success(`Task "${trimmedValue}" Added Successfully!`,{theme:'colored',position:'top-center',draggable:false})
                 setInputValue('');
             })
             .catch(err => {
                 console.error('Task Addition Error:', err);
-                const msg = (typeof err.response?.data === 'object' ? err.response?.data?.message : err.response?.data) || (err.message === 'Network Error' ? 'Cannot connect to server.' : 'Failed to add task.');
-                toast.error(msg, { theme: 'colored', position: 'top-center', draggable: false });
+                
+                // If it's a 401, the api interceptor will handle redirect, but we still show toast
+                let errorMsg = 'Failed to add task.';
+                
+                if (err.response) {
+                    // Server responded with a status code outside the 2xx range
+                    const serverMsg = typeof err.response.data === 'object' 
+                        ? err.response.data.message || err.response.data.error 
+                        : err.response.data;
+                    errorMsg = serverMsg || `Server Error: ${err.response.status}`;
+                } else if (err.request) {
+                    // No response received
+                    errorMsg = 'Cannot connect to server. Please check your connection.';
+                } else {
+                    // Something else happened
+                    errorMsg = err.message;
+                }
+                
+                toast.error(errorMsg, { theme: 'colored', position: 'top-center', draggable: false });
             });
         }
+
         const Delete_From_List = (id)=>
         {
             api.delete(`/delete/${id}`)
