@@ -43,12 +43,20 @@ const useBackButton = () => {
 
         let unlistenTauri;
         const setupTauriListener = async () => {
-            unlistenTauri = await listen('tauri://back-button', handleBackButton);
+            if (window.__TAURI__) {
+                try {
+                    unlistenTauri = await listen('tauri://back-button', handleBackButton);
+                } catch (error) {
+                    console.error('Failed to setup Tauri back button listener:', error);
+                }
+            }
         };
         setupTauriListener();
 
         return () => {
-            if (unlistenTauri) unlistenTauri();
+            if (unlistenTauri && typeof unlistenTauri === 'function') {
+                unlistenTauri();
+            }
         };
     }, []); // Empty deps: register once, refs handle dynamic values
 };
