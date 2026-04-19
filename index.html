@@ -43,7 +43,12 @@
 
         // 2. Initialize Robust Offline Detection
         if (typeof initConnectivityTracker === 'function') {
-          initConnectivityTracker('https://to-do-server-1yuc.onrender.com/todos');
+          const checkUrl = (window.location.hostname === 'localhost' || 
+                            window.location.hostname === '127.0.0.1' || 
+                            window.location.protocol === 'tauri:')
+                            ? 'http://localhost:3000/todos'
+                            : 'https://to-do-server-1yuc.onrender.com/todos';
+          initConnectivityTracker(checkUrl);
         }
 
         // 3. App Lockdown (Disable Browser Features in Tauri)
