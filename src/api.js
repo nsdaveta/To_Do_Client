@@ -1,13 +1,11 @@
 import axios from 'axios';
-
+    
 const isLocal = window.location.hostname === 'localhost' || 
                 window.location.hostname === '127.0.0.1' || 
                 window.location.protocol === 'tauri:';
 
 const api = axios.create({
-    baseURL: isLocal 
-        ? 'http://localhost:3000/todos' 
-        : 'https://to-do-server-1yuc.onrender.com/todos',
+    baseURL: 'https://to-do-server-1yuc.onrender.com/todos',
     headers: {
         'Content-Type': 'application/json'
     }
