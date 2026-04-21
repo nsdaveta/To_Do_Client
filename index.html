@@ -58,8 +58,9 @@
           const isQuickTest = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
           if (!isQuickTest) {
-            // Add lockdown class for CSS restrictions
+            // Add lockdown and tauri-mode classes
             document.body.classList.add('lockdown');
+            document.body.classList.add('tauri-mode');
 
             // Disable right-click
             document.addEventListener('contextmenu', (e) => e.preventDefault());
