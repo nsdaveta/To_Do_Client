@@ -77,9 +77,10 @@ body::before {
   opacity: 0.8; /* Subtle transparency to blend with fallback */
 }
 
-/* Hide background image in Tauri to let Mica show through */
+/* Show background image in Tauri but blend it with Mica translucency */
 body.tauri-mode::before {
-  display: none;
+  display: block;
+  opacity: 0.4; /* High transparency lets Mica show through */
 }
 
 body::after {
