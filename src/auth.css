@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+  min-height: calc(100vh - 32px);
   padding: 20px;
 }
 
@@ -15,12 +15,10 @@
 
 .auth-container h2 {
   font-size: 2rem;
-  margin-bottom: 30px;
+  margin-bottom: 8px;
   text-align: center;
-  background: linear-gradient(to right, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  color: var(--text-main);
 }
 
 .auth-container p {
@@ -43,13 +41,14 @@
 
 .form-group input {
   width: 100%;
-  padding: 12px 16px;
-  background: rgba(15, 23, 42, 0.4);
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--glass-border);
-  border-radius: 12px;
+  border-bottom: 2px solid var(--text-muted);
+  border-radius: 4px;
   color: var(--text-main);
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
 }
 
 .password-input-wrapper {
@@ -102,15 +101,15 @@ input::-ms-clear {
 .auth-container button[type="submit"],
 .auth-container button.primary-btn {
   width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  padding: 10px;
+  background: var(--primary);
   color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 4px;
   margin-top: 10px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .auth-container button[type="submit"]:hover,
@@ -189,13 +188,13 @@ input::-ms-clear {
 
 .secondary-btn {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   background: transparent;
   color: var(--text-main);
   border: 1px solid var(--glass-border);
-  border-radius: 12px;
+  border-radius: 4px;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .secondary-btn:hover {

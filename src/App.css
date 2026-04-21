@@ -1,20 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
+::selection {
+  background: var(--primary);
+  color: white;
+}
+
 :root {
-  --primary: #6366f1;
-  --primary-hover: #4f46e5;
-  --secondary: #a855f7;
+  --primary: #0067c0; /* Windows 11 Accent Color */
+  --primary-hover: #005fb8;
+  --secondary: #60cdff;
   --accent: #f43f5e;
-  --bg-dark: #0f172a;
-  --card-bg: rgba(30, 41, 59, 0.7);
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
+  --bg-dark: rgba(32, 32, 32, 0.7); /* Mica-like background */
+  --card-bg: rgba(45, 45, 45, 0.6);
+  --text-main: #ffffff;
+  --text-muted: #a0a0a0;
   --border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(15, 23, 42, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --success: #22c55e;
-  --error: #ef4444;
-  --warning: #f59e0b;
+  --glass-bg: rgba(32, 32, 32, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --success: #6ccb5f;
+  --error: #ff99a4;
+  --warning: #fff4ce;
 }
 
 * {
@@ -25,13 +30,13 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Segoe UI Variable Text', 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: transparent; /* Critical for Mica/Acrylic transparency */
+  background: transparent;
   color: var(--text-main);
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden; /* Control scrolling on components */
 }
 
 body.lockdown {
@@ -58,13 +63,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Premium High-Res Indigo Abstract from Unsplash CDN */
-  background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=2560&q=80');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-  opacity: 0.8;
+  background: #1c1c1c; /* Windows 11 Dark Mica Base */
+  z-index: -2;
 }
 
 body::after {
@@ -74,10 +74,7 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.2) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.4) 0px, transparent 100%);
+  background: radial-gradient(circle at 50% -20%, #3a3a3a 0%, #1c1c1c 80%);
   z-index: -1;
   pointer-events: none;
 }
@@ -102,15 +99,21 @@ a {
 }
 
 button {
-  cursor: pointer;
+  cursor: default; /* Desktop apps use default cursor for buttons usually, but pointer is okay too. I'll stick to pointer for comfort but make it feel more "solid" */
   border: none;
   outline: none;
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
+  user-select: none;
+}
+
+button:active {
+  transform: scale(0.98);
 }
 
 #root {
   width: 100%;
   min-height: 100vh;
+  padding-top: 32px; /* Space for TitleBar */
 }
 
 .App {
@@ -119,22 +122,22 @@ button {
   flex-direction: column;
 }
 
-/* Glassmorphism Utilities */
+/* Fluent UI Panel Style */
 .glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
+  backdrop-filter: blur(40px) saturate(1.5);
+  -webkit-backdrop-filter: blur(40px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
 }
 
 .glass-card {
   background: var(--card-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 /* Shimmer Animation */
@@ -174,20 +177,20 @@ button {
   animation: pageEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Scrollbar */
+/* Fluent Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.5);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.3);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+  background: rgba(255, 255, 255, 0.2);
 }

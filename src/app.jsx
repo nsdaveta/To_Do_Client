@@ -11,12 +11,17 @@ import VerifyOtp from './VerifyOtp';
 import ForgotPassword from './ForgotPassword';
 import useBackButton from './hooks/useBackButton';
 
+import TitleBar from './components/TitleBar';
+import Navbar from './components/Navbar';
+
 function App() 
 {  
   useBackButton();
 
   return(
     <div className="App">
+      <TitleBar />
+      <Navbar />
       <ToastContainer hideProgressBar={true} autoClose={2000} position="top-right" theme="colored" />
       <Routes>
         <Route index element={<Home/>}/>
