@@ -41,12 +41,10 @@
     "windows": {
       "signCommand": "c:\\Users\\nsdav\\OneDrive\\Desktop\\MERN_STACK\\To_Do_List\\To_Do_Client\\sign-app.bat %1",
       "nsis": {
-        "installMode": "currentUser",
-        "displayIcon": "icons/icon.ico",
+        "installMode": "perMachine",
         "installerIcon": "icons/icon.ico",
-        "uninstallerIcon": "icons/icon.ico",
-        "oneClick": false,
-        "allowToChangeInstallationDirectory": true
+        "headerImage": "icons/icon.png",
+        "sidebarImage": "icons/icon.png"
       }
     },
     "icon": [
