@@ -872,3 +872,147 @@ Successfully signed: C:\Users\nsdav\AppData\Local\Temp\nstE5D6.tmp
 Done Adding Additional Store
 Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\bundle/nsis/To-Do App_1.0.5_x86-setup.exe
 [Tue 04/21/2026 15:17:22.20] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\bundle/nsis/To-Do App_1.0.5_x86-setup.exe 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:45:30.98] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\to-do-app.exe 
+[Tue 04/21/2026 15:45:31.33] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\to-do-app.exe
+[Tue 04/21/2026 15:45:35.13] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\to-do-app.exe 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:45:38.52] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\wix\x64\wix\WixUIExtension.dll 
+[Tue 04/21/2026 15:45:38.56] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\wix\x64\wix\WixUIExtension.dll
+[Tue 04/21/2026 15:45:51.53] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\wix\x64\wix\WixUIExtension.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:45:51.70] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\wix\x64\wix\WixUtilExtension.dll 
+[Tue 04/21/2026 15:45:51.76] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\wix\x64\wix\WixUtilExtension.dll
+[Tue 04/21/2026 15:46:10.99] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\wix\x64\wix\WixUtilExtension.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:47:14.30] Called with: "C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\bundle/msi/To-Do App_1.0.5_x64_en-US.msi" 
+[Tue 04/21/2026 15:47:14.33] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\bundle/msi/To-Do App_1.0.5_x64_en-US.msi
+[Tue 04/21/2026 15:47:16.48] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\bundle/msi/To-Do App_1.0.5_x64_en-US.msi 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:47:17.10] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\to-do-app.exe 
+[Tue 04/21/2026 15:47:17.15] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\to-do-app.exe
+[Tue 04/21/2026 15:47:21.96] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\to-do-app.exe 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:47:22.74] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\NSISdl.dll 
+[Tue 04/21/2026 15:47:22.79] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\NSISdl.dll
+[Tue 04/21/2026 15:47:25.56] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\NSISdl.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:47:25.74] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\StartMenu.dll 
+[Tue 04/21/2026 15:47:25.79] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\StartMenu.dll
+[Tue 04/21/2026 15:47:27.88] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\StartMenu.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:47:28.76] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\System.dll 
+[Tue 04/21/2026 15:47:28.87] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\System.dll
+[Tue 04/21/2026 15:47:31.34] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\System.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:47:31.57] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\nsDialogs.dll 
+[Tue 04/21/2026 15:47:31.64] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\nsDialogs.dll
+[Tue 04/21/2026 15:47:33.34] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\nsDialogs.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:47:33.57] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\additional/nsis_tauri_utils.dll 
+[Tue 04/21/2026 15:47:33.64] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\additional/nsis_tauri_utils.dll
+[Tue 04/21/2026 15:47:35.66] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64\Plugins\x86-unicode\additional/nsis_tauri_utils.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:47:41.17] Called with: "C:\Users\nsdav\AppData\Local\Temp\nstEF92.tmp" 
+[Tue 04/21/2026 15:47:41.22] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\nsis\x64 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\AppData\Local\Temp\nstEF92.tmp
+[Tue 04/21/2026 15:47:46.85] Successfully signed: C:\Users\nsdav\AppData\Local\Temp\nstEF92.tmp 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:48:00.80] Called with: "C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\bundle/nsis/To-Do App_1.0.5_x64-setup.exe" 
+[Tue 04/21/2026 15:48:00.84] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\bundle/nsis/To-Do App_1.0.5_x64-setup.exe
+[Tue 04/21/2026 15:48:10.13] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\release\bundle/nsis/To-Do App_1.0.5_x64-setup.exe 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:52:03.31] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\to-do-app.exe 
+[Tue 04/21/2026 15:52:03.35] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\to-do-app.exe
+[Tue 04/21/2026 15:52:04.82] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\to-do-app.exe 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:52:14.60] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\wix\x86\wix\WixUIExtension.dll 
+[Tue 04/21/2026 15:52:14.69] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\wix\x86\wix\WixUIExtension.dll
+[Tue 04/21/2026 15:52:18.80] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\wix\x86\wix\WixUIExtension.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:52:19.02] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\wix\x86\wix\WixUtilExtension.dll 
+[Tue 04/21/2026 15:52:19.08] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\wix\x86\wix\WixUtilExtension.dll
+[Tue 04/21/2026 15:52:34.48] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\wix\x86\wix\WixUtilExtension.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:53:51.26] Called with: "C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\bundle/msi/To-Do App_1.0.5_x86_en-US.msi" 
+[Tue 04/21/2026 15:53:51.30] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\bundle/msi/To-Do App_1.0.5_x86_en-US.msi
+[Tue 04/21/2026 15:53:53.71] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\bundle/msi/To-Do App_1.0.5_x86_en-US.msi 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:53:54.42] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\to-do-app.exe 
+[Tue 04/21/2026 15:53:54.53] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\to-do-app.exe
+[Tue 04/21/2026 15:53:57.02] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\to-do-app.exe 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:53:57.63] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\NSISdl.dll 
+[Tue 04/21/2026 15:53:57.69] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\NSISdl.dll
+[Tue 04/21/2026 15:54:00.59] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\NSISdl.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:54:01.59] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\StartMenu.dll 
+[Tue 04/21/2026 15:54:01.83] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\StartMenu.dll
+[Tue 04/21/2026 15:54:03.44] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\StartMenu.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:54:03.68] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\System.dll 
+[Tue 04/21/2026 15:54:03.71] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\System.dll
+[Tue 04/21/2026 15:54:05.20] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\System.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:54:05.41] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\nsDialogs.dll 
+[Tue 04/21/2026 15:54:05.45] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\nsDialogs.dll
+[Tue 04/21/2026 15:54:07.40] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\nsDialogs.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:54:07.60] Called with: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\additional/nsis_tauri_utils.dll 
+[Tue 04/21/2026 15:54:07.64] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\additional/nsis_tauri_utils.dll
+[Tue 04/21/2026 15:54:09.23] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86\Plugins\x86-unicode\additional/nsis_tauri_utils.dll 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:54:13.39] Called with: "C:\Users\nsdav\AppData\Local\Temp\nstEC88.tmp" 
+[Tue 04/21/2026 15:54:13.43] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\nsis\x86 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\AppData\Local\Temp\nstEC88.tmp
+[Tue 04/21/2026 15:54:15.74] Successfully signed: C:\Users\nsdav\AppData\Local\Temp\nstEC88.tmp 
+-------------------------------------------------- 
+[Tue 04/21/2026 15:54:25.71] Called with: "C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\bundle/nsis/To-Do App_1.0.5_x86-setup.exe" 
+[Tue 04/21/2026 15:54:25.77] Working directory: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri 
+Done Adding Additional Store
+Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\bundle/nsis/To-Do App_1.0.5_x86-setup.exe
+[Tue 04/21/2026 15:54:30.28] Successfully signed: C:\Users\nsdav\OneDrive\Desktop\MERN_STACK\To_Do_List\To_Do_Client\src-tauri\target\i686-pc-windows-msvc\release\bundle/nsis/To-Do App_1.0.5_x86-setup.exe 

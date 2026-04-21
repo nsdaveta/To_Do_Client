@@ -22,16 +22,18 @@ function App()
     <div className="App">
       <TitleBar />
       <Navbar />
-      <ToastContainer hideProgressBar={true} autoClose={2000} position="top-right" theme="colored" />
-      <Routes>
-        <Route index element={<Home/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/register' element={<Register/>}/>
-        <Route path='/verify-otp' element={<VerifyOtp/>}/>
-        <Route path='/forgot-password' element={<ForgotPassword/>}/>
-        <Route path='/todos' element={<To_Do/>}/>
-        <Route path='*' element={<NotFound/>}/>
-      </Routes>
+      <main className="main-content">
+        <ToastContainer hideProgressBar={true} autoClose={2000} position="top-right" theme="colored" />
+        <Routes>
+          <Route index element={<Home/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
+          <Route path='/verify-otp' element={<VerifyOtp/>}/>
+          <Route path='/forgot-password' element={<ForgotPassword/>}/>
+          <Route path='/todos' element={<To_Do/>}/>
+          <Route path='*' element={<NotFound/>}/>
+        </Routes>
+      </main>
     </div>
   )
 }

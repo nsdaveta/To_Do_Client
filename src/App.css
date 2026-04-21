@@ -33,7 +33,7 @@ body {
   font-family: 'Segoe UI Variable Text', 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: transparent;
+  background: transparent !important;
   color: var(--text-main);
   min-height: 100vh;
   overflow: hidden; /* Control scrolling on components */
@@ -63,7 +63,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #1c1c1c; /* Windows 11 Dark Mica Base */
+  background: rgba(28, 28, 28, 0.1); /* Very subtle tint, lets Mica through */
   z-index: -2;
 }
 
@@ -74,7 +74,7 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 50% -20%, #3a3a3a 0%, #1c1c1c 80%);
+  background: radial-gradient(circle at 50% -20%, rgba(58, 58, 58, 0.15) 0%, transparent 80%);
   z-index: -1;
   pointer-events: none;
 }
@@ -87,7 +87,7 @@ body::after {
 
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Segoe UI Variable Display', 'Outfit', sans-serif;
   font-weight: 700;
   color: var(--text-main);
 }
@@ -99,7 +99,7 @@ a {
 }
 
 button {
-  cursor: default; /* Desktop apps use default cursor for buttons usually, but pointer is okay too. I'll stick to pointer for comfort but make it feel more "solid" */
+  cursor: default; /* Desktop apps use default cursor for buttons usually */
   border: none;
   outline: none;
   font-family: inherit;
@@ -114,30 +114,45 @@ button:active {
   width: 100%;
   min-height: 100vh;
   padding-top: 32px; /* Space for TitleBar */
+  display: flex;
 }
 
 .App {
-  min-height: 100vh;
+  flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Layout for Sidebar + Content */
+  height: calc(100vh - 32px);
+  overflow: hidden;
+}
+
+/* Content Area */
+.App > Routes, 
+.App > main,
+.App > .home-container,
+.App > .To_Do_Container,
+.App > .auth-page {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
 }
 
 /* Fluent UI Panel Style */
 .glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(40px) saturate(1.5);
-  -webkit-backdrop-filter: blur(40px) saturate(1.5);
+  background: rgba(32, 32, 32, 0.4);
+  backdrop-filter: blur(50px) saturate(1.8);
+  -webkit-backdrop-filter: blur(50px) saturate(1.8);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 }
 
 .glass-card {
-  background: var(--card-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(45, 45, 45, 0.3);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* Shimmer Animation */
