@@ -18,12 +18,16 @@ api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token');
         if (token && token !== 'undefined' && token !== 'null') {
+            // Ensure headers object exists
+            config.headers = config.headers || {};
+            
             // Use config.headers.set if it's an AxiosHeaders object (Axios 1.0+)
-            if (config.headers.set) {
+            if (typeof config.headers.set === 'function') {
                 config.headers.set('Authorization', `Bearer ${token}`);
             } else {
-                config.headers.Authorization = `Bearer ${token}`;
+                config.headers['Authorization'] = `Bearer ${token}`;
             }
+            console.log(`Request [${config.method?.toUpperCase() || 'GET'}] ${config.url} - Token attached`);
         }
         return config;
     },
@@ -38,7 +42,10 @@ api.interceptors.response.use(
         return response;
     },
     (error) => {
+        // Handle 401 Unauthorized errors
         if (error.response && error.response.status === 401) {
+            console.warn('Unauthorized request (401). Cleaning up session...');
+            
             // Clear auth data on 401
             localStorage.removeItem('token');
             localStorage.removeItem('userEmail');
@@ -47,10 +54,10 @@ api.interceptors.response.use(
             // Trigger authChange event for components (like Navbar) to react
             window.dispatchEvent(new Event('authChange'));
             
-            // Redirect to login if not already there
-            const currentHash = window.location.hash;
-            if (currentHash !== '#/login' && currentHash !== '#/') {
-                console.log('Session expired (401). Redirecting to login...');
+            // Redirect to login if not already there or at root
+            const hash = window.location.hash;
+            if (hash !== '#/login' && hash !== '#/register' && hash !== '#/forgot-password') {
+                console.log('Redirecting to login page...');
                 window.location.hash = '#/login';
             }
         }
