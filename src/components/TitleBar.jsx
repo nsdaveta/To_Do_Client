@@ -3,32 +3,38 @@ import { getCurrentWindow } from '@tauri-apps/api/window';
 import { VscChromeMinimize, VscChromeMaximize, VscChromeRestore, VscChromeClose } from 'react-icons/vsc';
 import './titlebar.css';
 
-const appWindow = getCurrentWindow();
-
 const TitleBar = () => {
   const [isMaximized, setIsMaximized] = React.useState(false);
+  const [appWindow, setAppWindow] = React.useState(null);
 
   React.useEffect(() => {
-    const updateMaximized = async () => {
-      setIsMaximized(await appWindow.isMaximized());
-    };
-    
-    updateMaximized();
-    const unlisten = appWindow.onResized(() => {
+    if (window.__TAURI_INTERNALS__) {
+      const win = getCurrentWindow();
+      setAppWindow(win);
+      
+      const updateMaximized = async () => {
+        setIsMaximized(await win.isMaximized());
+      };
+      
       updateMaximized();
-    });
+      const unlisten = win.onResized(() => {
+        updateMaximized();
+      });
 
-    return () => {
-      unlisten.then(u => u());
-    };
+      return () => {
+        unlisten.then(u => u());
+      };
+    }
   }, []);
 
-  const handleMinimize = () => appWindow.minimize();
+  const handleMinimize = () => appWindow?.minimize();
   const handleMaximize = async () => {
-    await appWindow.toggleMaximize();
-    setIsMaximized(await appWindow.isMaximized());
+    if (appWindow) {
+      await appWindow.toggleMaximize();
+      setIsMaximized(await appWindow.isMaximized());
+    }
   };
-  const handleClose = () => appWindow.close();
+  const handleClose = () => appWindow?.close();
 
   return (
     <div data-tauri-drag-region className="titlebar">

@@ -11,7 +11,6 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <DialogProvider>
       <HashRouter>
-        <Navbar />
         <App />
         <Dialog />
       </HashRouter>
