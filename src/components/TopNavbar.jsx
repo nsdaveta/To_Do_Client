@@ -63,7 +63,7 @@ const TopNavbar = () => {
                         <div className="user-section">
                             <div className="user-info">
                                 <VscAccount className="user-icon" />
-                                <span className="username-display">{username || 'User'}</span>
+                                <span className="username-display">Hello, {username || 'User'}</span>
                             </div>
                             <button onClick={handleLogout} className="top-logout-btn" title="Logout">
                                 <VscSignOut />
