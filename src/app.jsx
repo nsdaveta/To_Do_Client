@@ -13,15 +13,22 @@ import useBackButton from './hooks/useBackButton';
 
 import TitleBar from './components/TitleBar';
 import Navbar from './components/Navbar';
+import TopNavbar from './components/TopNavbar';
 
 function App() 
 {  
   useBackButton();
 
   return(
-    <div className={`App ${window.isTauri ? 'tauri-mode' : ''}`}>
-      {window.isTauri && <TitleBar />}
-      <Navbar />
+    <div className={`App ${window.isTauri ? 'tauri-mode' : 'web-mode'}`}>
+      {window.isTauri ? (
+        <>
+          <TitleBar />
+          <Navbar />
+        </>
+      ) : (
+        <TopNavbar />
+      )}
       <main className="main-content">
         <ToastContainer hideProgressBar={true} autoClose={2000} position="top-right" theme="colored" />
         <Routes>

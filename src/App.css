@@ -149,24 +149,29 @@ body.tauri-mode #root {
 .App {
   flex: 1;
   display: flex;
-  flex-direction: row; /* Layout for Sidebar + Content */
-  height: 100vh;
+  flex-direction: column; /* Default for web (Top Navbar) */
+  min-height: 100vh;
+}
+
+.App.tauri-mode {
+  flex-direction: row; /* Desktop layout (Sidebar) */
+  height: calc(100vh - 32px);
   overflow: hidden;
 }
 
-body.tauri-mode .App {
-  height: calc(100vh - 32px);
+.App.web-mode {
+  height: auto;
+  overflow: visible;
 }
 
 /* Content Area */
-.App > Routes, 
-.App > main,
-.App > .home-container,
-.App > .To_Do_Container,
-.App > .auth-page {
+.App > main {
   flex: 1;
-  overflow-y: auto;
   padding: 20px;
+}
+
+.App.tauri-mode > main {
+  overflow-y: auto;
 }
 
 /* Fluent UI Panel Style */
