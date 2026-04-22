@@ -40,25 +40,27 @@ const TopNavbar = () => {
     return (
         <nav className="top-navbar glass-panel">
             <div className="nav-container">
-                <div className="nav-left">
-                    <NavLink to="/" className="nav-brand">
-                        <img src="/icons/32x32.png" alt="logo" className="nav-logo" />
-                        <span>To-Do App</span>
-                    </NavLink>
-                </div>
-
-                <div className="nav-center">
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-                        <VscHome /> <span>Home</span>
-                    </NavLink>
-                    {token && (
-                        <NavLink to="/todos" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-                            <VscChecklist /> <span>Tasks</span>
+                <div className="nav-top-row">
+                    <div className="nav-left">
+                        <NavLink to="/" className="nav-brand">
+                            <img src="/icons/32x32.png" alt="logo" className="nav-logo" />
+                            <span>To-Do App</span>
                         </NavLink>
-                    )}
+                    </div>
+
+                    <div className="nav-links-section">
+                        <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                            <VscHome /> <span>Home</span>
+                        </NavLink>
+                        {token && (
+                            <NavLink to="/todos" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                                <VscChecklist /> <span>Tasks</span>
+                            </NavLink>
+                        )}
+                    </div>
                 </div>
 
-                <div className="nav-right">
+                <div className="nav-bottom-row">
                     {token ? (
                         <div className="user-section">
                             <div className="user-info">
@@ -68,7 +70,7 @@ const TopNavbar = () => {
                                 </span>
                             </div>
                             <button onClick={handleLogout} className="top-logout-btn" title="Logout">
-                                <VscSignOut />
+                                <VscSignOut /> <span>Logout</span>
                             </button>
                         </div>
                     ) : (

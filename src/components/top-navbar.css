@@ -1,9 +1,10 @@
 .top-navbar {
-    height: 60px;
+    height: auto;
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 0 24px;
+    padding: 12px 24px;
     z-index: 1000;
     position: sticky;
     top: 0;
@@ -16,6 +17,13 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-top-row {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,7 +44,7 @@
     height: 28px;
 }
 
-.nav-center {
+.nav-links-section {
     display: flex;
     gap: 8px;
 }
@@ -68,7 +76,7 @@
 .nav-link.active::after {
     content: "";
     position: absolute;
-    bottom: -10px;
+    bottom: -8px;
     left: 20%;
     right: 20%;
     height: 3px;
@@ -76,25 +84,28 @@
     border-radius: 2px;
 }
 
-.nav-right {
+.nav-bottom-row {
+    width: 100%;
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
+    padding-top: 4px;
 }
 
 .user-section {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 4px 12px;
+    gap: 20px;
+    padding: 6px 16px;
     background: rgba(255, 255, 255, 0.03);
-    border-radius: 20px;
+    border-radius: 8px;
     border: 1px solid var(--glass-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .user-info {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .user-icon {
@@ -103,27 +114,32 @@
 }
 
 .username-display {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-main);
     letter-spacing: 0.01em;
 }
 
 .top-logout-btn {
-    background: transparent;
-    color: var(--error);
-    border: none;
-    padding: 4px;
+    background: rgba(239, 68, 68, 0.1);
+    color: #ff99a4;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    padding: 6px 14px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: transform 0.2s;
-    opacity: 0.8;
+    transition: all 0.2s;
 }
 
 .top-logout-btn:hover {
-    transform: scale(1.1);
-    opacity: 1;
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+    transform: translateY(-1px);
 }
 
 .auth-links {
@@ -143,32 +159,30 @@
 }
 
 @media (max-width: 480px) {
-    .nav-link span, .welcome-text {
+    .nav-link span, .welcome-text, .top-logout-btn span {
         display: none;
     }
     
     .nav-brand span {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     .username-display {
-        max-width: 100px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: 0.85rem;
+        max-width: 120px;
+        font-size: 0.9rem;
     }
 
     .user-section {
-        gap: 8px;
-        padding: 4px 8px;
+        gap: 12px;
+        padding: 6px 10px;
     }
 
     .nav-container {
-        gap: 4px;
+        gap: 8px;
     }
 
     .top-navbar {
-        padding: 0 8px;
+        padding: 10px 12px;
     }
 }
+
