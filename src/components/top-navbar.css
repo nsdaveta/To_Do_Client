@@ -6,12 +6,11 @@
     align-items: center;
     padding: 12px 24px;
     z-index: 1000;
-    position: sticky;
-    top: 0;
+    position: relative;
     border-radius: 0 0 12px 12px;
     border-top: none;
     background: var(--glass-bg);
-    margin-bottom: 20px; /* Clear separation from main content */
+    margin-bottom: 0; /* Handled by layout flow now */
 }
 
 .nav-container {
