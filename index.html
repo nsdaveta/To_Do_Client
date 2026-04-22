@@ -14,7 +14,11 @@
     <title>To Do App - Organizer</title>
     <script>
       // Environment detection
-      window.isTauri = !!(window.__TAURI_INTERNALS__ || window.__TAURI__);
+      const isTauriEnv = !!(window.__TAURI_INTERNALS__ || window.__TAURI__);
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      window.isTauri = isTauriEnv;
+      window.isDesktopTauri = isTauriEnv && !isMobileDevice;
     </script>
   </head>     
   <body>

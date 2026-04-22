@@ -20,8 +20,8 @@ function App()
   useBackButton();
 
   return(
-    <div className={`App ${window.isTauri ? 'tauri-mode' : 'web-mode'}`}>
-      {window.isTauri ? (
+    <div className={`App ${window.isDesktopTauri ? 'tauri-mode' : 'web-mode'}`}>
+      {window.isDesktopTauri ? (
         <>
           <TitleBar />
           <Navbar />
