@@ -38,12 +38,14 @@ body {
   background: #1a1a1a !important; /* Premium dark fallback */
   color: var(--text-main);
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto; /* Allow scrolling on web */
 }
 
-/* Maintain transparency only in Tauri for Mica effect */
+/* Maintain transparency and hide scroll only in Tauri for Mica effect */
 body.tauri-mode {
   background: transparent !important;
+  overflow: hidden;
 }
 
 /* Add a subtle window border in Tauri mode to feel more native */
@@ -161,13 +163,17 @@ body.tauri-mode #root {
 
 .App.web-mode {
   height: auto;
+  min-height: 100vh;
   overflow: visible;
 }
 
 /* Content Area */
-.App > main {
+.App.web-mode > main {
   flex: 1;
-  padding: 20px;
+  padding: 40px 20px; /* Increased top padding for clear separation */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .App.tauri-mode > main {
