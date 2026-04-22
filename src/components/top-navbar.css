@@ -143,9 +143,22 @@
 }
 
 @media (max-width: 480px) {
-    .nav-link span, .username-display {
+    .nav-link span {
         display: none;
     }
+    
+    .username-display {
+        max-width: 80px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.8rem;
+    }
+
+    .nav-container {
+        gap: 8px;
+    }
+}
     
     .nav-container {
         gap: 10px;
