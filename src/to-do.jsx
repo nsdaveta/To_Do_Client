@@ -195,7 +195,7 @@ const To_Do = () =>
   return (
     <>
     <title>To Do App - Tasks</title>
-    <div className="To_Do_Container">
+    <div className="To_Do_Container glass-panel">
         <div className="To-Do">
             <div className="todo-header">
                 <h1>To-Do List</h1>

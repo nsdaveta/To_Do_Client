@@ -19,8 +19,8 @@ function App()
   useBackButton();
 
   return(
-    <div className="App">
-      <TitleBar />
+    <div className={`App ${window.isTauri ? 'tauri-mode' : ''}`}>
+      {window.isTauri && <TitleBar />}
       <Navbar />
       <main className="main-content">
         <ToastContainer hideProgressBar={true} autoClose={2000} position="top-right" theme="colored" />

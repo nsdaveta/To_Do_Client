@@ -3,9 +3,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
+    padding: 40px 32px;
     width: 100%;
     position: relative;
+    max-width: 900px;
+    margin: 20px auto;
 }
 
 
@@ -84,12 +86,12 @@
 .input-form {
     width: 100%;
     display: flex;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 4px;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 6px;
     border-radius: 8px;
     border: 1px solid var(--glass-border);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .input-form input[type='text'] {
@@ -133,11 +135,11 @@
 }
 
 .action-btn {
-    padding: 12px 24px;
-    border-radius: 16px;
-    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 4px; /* Standard Fluent radius */
+    font-weight: 500;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(8px);
 }
 

@@ -14,12 +14,14 @@
   --card-bg: rgba(45, 45, 45, 0.6);
   --text-main: #ffffff;
   --text-muted: #a0a0a0;
-  --border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(32, 32, 32, 0.85);
+  --border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(32, 32, 32, 0.65);
   --glass-border: rgba(255, 255, 255, 0.1);
   --success: #6ccb5f;
   --error: #ff99a4;
   --warning: #fff4ce;
+  --panel-blur: 50px;
+  --card-blur: 30px;
 }
 
 * {
@@ -42,6 +44,13 @@ body {
 /* Maintain transparency only in Tauri for Mica effect */
 body.tauri-mode {
   background: transparent !important;
+}
+
+/* Add a subtle window border in Tauri mode to feel more native */
+body.tauri-mode .App {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px; /* Match Tauri window rounding if applicable */
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05); /* Inner highlight */
 }
 
 body.lockdown {
@@ -80,7 +89,8 @@ body::before {
 /* Show background image in Tauri but blend it with Mica translucency */
 body.tauri-mode::before {
   display: block;
-  opacity: 0.4; /* High transparency lets Mica show through */
+  opacity: 0.25; /* Lower opacity for better Mica visibility */
+  filter: blur(2px); /* Slight blur to focus on content */
 }
 
 body::after {
@@ -129,16 +139,23 @@ button:active {
 #root {
   width: 100%;
   min-height: 100vh;
-  padding-top: 32px; /* Space for TitleBar */
   display: flex;
+}
+
+body.tauri-mode #root {
+  padding-top: 32px; /* Space for TitleBar only in Tauri */
 }
 
 .App {
   flex: 1;
   display: flex;
   flex-direction: row; /* Layout for Sidebar + Content */
-  height: calc(100vh - 32px);
+  height: 100vh;
   overflow: hidden;
+}
+
+body.tauri-mode .App {
+  height: calc(100vh - 32px);
 }
 
 /* Content Area */
@@ -154,21 +171,23 @@ button:active {
 
 /* Fluent UI Panel Style */
 .glass-panel {
-  background: rgba(32, 32, 32, 0.4);
-  backdrop-filter: blur(50px) saturate(1.8);
-  -webkit-backdrop-filter: blur(50px) saturate(1.8);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--panel-blur)) saturate(1.8);
+  -webkit-backdrop-filter: blur(var(--panel-blur)) saturate(1.8);
+  border: 1px solid var(--glass-border);
+  border-top-color: rgba(255, 255, 255, 0.15); /* Subtle top-light effect */
   border-radius: 8px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
 }
 
 .glass-card {
-  background: rgba(45, 45, 45, 0.3);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(45, 45, 45, 0.45);
+  backdrop-filter: blur(var(--card-blur));
+  -webkit-backdrop-filter: blur(var(--card-blur));
+  border: 1px solid var(--glass-border);
+  border-top-color: rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
 
 /* Shimmer Animation */

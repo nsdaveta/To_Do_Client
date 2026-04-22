@@ -49,12 +49,16 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo,isSimple,hi
                 
                 if (isSimple) {
                     return (
-                        <button
-                            className="icon-btn delete"
-                            onClick={handleDelete}
-                        >
-                            <MdDeleteOutline size={18} />
-                        </button>
+                        <>
+                            {todo.IsCompleted && (
+                                <button
+                                    className="icon-btn delete"
+                                    onClick={handleDelete}
+                                >
+                                    <MdDeleteOutline size={18} />
+                                </button>
+                            )}
+                        </>
                     );
                 }
 
@@ -86,12 +90,6 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo,isSimple,hi
                                     }}
                                 >
                                     <LuPencilLine size={18} />
-                                </button>
-                                <button
-                                    className="icon-btn delete"
-                                    onClick={handleDelete}
-                                >
-                                    <MdDeleteOutline size={18} />
                                 </button>
                             </>
                         );

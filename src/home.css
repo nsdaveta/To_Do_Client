@@ -1,18 +1,18 @@
 .home-landing {
-  max-width: 800px;
+  max-width: 850px;
   margin: 60px auto;
-  padding: 40px;
+  padding: 60px 40px;
   text-align: center;
   border-radius: 8px;
 }
 
 .home-landing h1 {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: 3.8rem;
+  margin-bottom: 24px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--text-main);
-  line-height: 1.1;
+  line-height: 1.05;
 }
 
 .home-landing p {
@@ -102,12 +102,13 @@
 
 .todo-form {
   display: flex;
-  gap: 8px;
-  margin-bottom: 30px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 4px;
+  gap: 12px;
+  margin-bottom: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px;
   border-radius: 8px;
   border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .input-wrapper {
@@ -149,20 +150,21 @@
 
 .todo-input {
   flex: 1;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--glass-border);
-  border-bottom: 2px solid var(--text-muted); /* Fluent-style underline */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3); /* Fluent-style rest state */
   border-radius: 4px;
   color: var(--text-main);
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
+  font-size: 1rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .todo-input:focus {
   border-color: var(--primary);
-  background: rgba(15, 23, 42, 0.6);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+  border-bottom-color: var(--primary);
+  background: rgba(45, 45, 45, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .add-btn {
