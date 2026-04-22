@@ -37,7 +37,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #1a1a1a !important; /* Premium dark fallback */
   color: var(--text-main);
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden; /* App container handles scrolling */
 }
 
@@ -138,7 +138,7 @@ button:active {
 
 #root {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
 }
 
@@ -150,7 +150,7 @@ body.tauri-mode #root {
   flex: 1;
   display: flex;
   flex-direction: column; /* Default for web (Top Navbar) */
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .App.tauri-mode {
@@ -160,8 +160,7 @@ body.tauri-mode #root {
 }
 
 .App.web-mode {
-  height: 100vh;
-  overflow: hidden;
+  height: 100dvh;
 }
 
 /* Content Area */

@@ -160,6 +160,11 @@
 }
 
 @media (max-width: 480px) {
+    .top-navbar {
+        min-height: 85px; /* Slightly more compact for mobile */
+        padding: 8px 12px;
+    }
+    
     .nav-link span, .welcome-text, .top-logout-btn span {
         display: none;
     }
@@ -179,11 +184,7 @@
     }
 
     .nav-container {
-        gap: 8px;
-    }
-
-    .top-navbar {
-        padding: 10px 12px;
+        gap: 6px;
     }
 }
 
