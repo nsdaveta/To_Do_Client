@@ -143,28 +143,32 @@
 }
 
 @media (max-width: 480px) {
-    .nav-link span {
+    .nav-link span, .welcome-text {
         display: none;
     }
     
+    .nav-brand span {
+        font-size: 0.9rem;
+    }
+
     .username-display {
-        max-width: 80px;
+        max-width: 100px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .user-section {
+        gap: 8px;
+        padding: 4px 8px;
     }
 
     .nav-container {
-        gap: 8px;
+        gap: 4px;
     }
-}
-    
-    .nav-container {
-        gap: 10px;
-    }
-    
+
     .top-navbar {
-        padding: 0 12px;
+        padding: 0 8px;
     }
 }
