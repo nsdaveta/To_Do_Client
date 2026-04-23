@@ -10,13 +10,13 @@
   --primary-hover: #005fb8;
   --secondary: #60cdff;
   --accent: #f43f5e;
-  --bg-dark: rgba(32, 32, 32, 0.7); /* Mica-like background */
-  --card-bg: rgba(45, 45, 45, 0.6);
+  --bg-dark: rgba(45, 45, 45, 0.75); /* Lighter Mica-like background */
+  --card-bg: rgba(60, 60, 60, 0.65);
   --text-main: #ffffff;
-  --text-muted: #a0a0a0;
-  --border: rgba(255, 255, 255, 0.08);
-  --glass-bg: rgba(32, 32, 32, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-muted: #b0b0b0;
+  --border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(45, 45, 45, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.12);
   --success: #6ccb5f;
   --error: #ff99a4;
   --warning: #fff4ce;
@@ -35,7 +35,7 @@ body {
   font-family: 'Segoe UI Variable Text', 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #1a1a1a !important; /* Premium dark fallback */
+  background: #252525 !important; /* Lighter premium dark fallback */
   color: var(--text-main);
   height: 100dvh;
   overflow: hidden; /* App container handles scrolling */
@@ -83,14 +83,15 @@ body::before {
   background-attachment: fixed;
   animation: mesh-gradient 20s ease infinite; /* Restored animation */
   z-index: -2;
-  opacity: 0.8; /* Subtle transparency to blend with fallback */
+  opacity: 0.9; /* Increased opacity for a brighter look */
+  filter: brightness(1.1);
 }
 
 /* Show background image in Tauri but blend it with Mica translucency */
 body.tauri-mode::before {
   display: block;
-  opacity: 0.25; /* Lower opacity for better Mica visibility */
-  filter: blur(2px); /* Slight blur to focus on content */
+  opacity: 0.45; /* Increased opacity for better visibility on desktop */
+  filter: blur(2px) brightness(1.2); /* Added brightness boost */
 }
 
 body::after {

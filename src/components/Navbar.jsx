@@ -67,16 +67,20 @@ const Navbar = () => {
                                 <div className="user-avatar">
                                     <VscAccount />
                                 </div>
-                                {!isCollapsed && (
+                                {isCollapsed ? (
+                                    <button onClick={handleLogout} className="logout-btn-sidebar collapsed" title="Logout">
+                                        <VscSignOut className="nav-icon" />
+                                    </button>
+                                ) : (
                                     <div className="user-details">
                                         <span className="username">{username || 'User'}</span>
+                                        <button onClick={handleLogout} className="logout-btn-inline">
+                                            <VscSignOut className="logout-mini-icon" />
+                                            <span>Logout</span>
+                                        </button>
                                     </div>
                                 )}
                             </div>
-                            <button onClick={handleLogout} className="logout-btn-sidebar">
-                                <VscSignOut className="nav-icon" />
-                                {!isCollapsed && <span>Logout</span>}
-                            </button>
                         </div>
                     </>
                 ) : (
