@@ -74,13 +74,14 @@ const Navbar = () => {
                                 <VscSignOut className="nav-icon" />
                             </button>
                         ) : (
-                            <div className="user-details">
-                                <span className="username">{username || 'User'}</span>
-                                <button onClick={handleLogout} className="logout-btn-inline">
-                                    <VscSignOut className="logout-mini-icon" />
-                                    <span>Logout</span>
+                            <>
+                                <div className="user-details">
+                                    <span className="username">{username || 'User'}</span>
+                                </div>
+                                <button onClick={handleLogout} className="logout-btn-inline" title="Logout">
+                                    <VscSignOut />
                                 </button>
-                            </div>
+                            </>
                         )}
                     </div>
                 </div>
