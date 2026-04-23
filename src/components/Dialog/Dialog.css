@@ -21,7 +21,7 @@
     border-radius: 28px;
     padding: 32px;
     width: 90%;
-    max-width: 420px;
+    max-width: 800px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
@@ -41,6 +41,8 @@
     color: var(--text-muted);
     line-height: 1.6;
     font-size: 1.1rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .dialog-footer {

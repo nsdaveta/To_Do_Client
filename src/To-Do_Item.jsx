@@ -22,11 +22,19 @@ const ToDoItem = ({index,todo,Delete_From_List,Update_List,Done,Undo,isSimple,hi
         {!isUpdating ? (
             <span>{`${index}) ${todo.title}`}</span>
         ) : (
-            <input
+            <textarea
                 value={InputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                type="text"
+                onChange={(e) => {
+                    setInputValue(e.target.value);
+                    e.target.style.height = 'auto';
+                    e.target.style.height = e.target.scrollHeight + 'px';
+                }}
                 autoFocus
+                onFocus={(e) => {
+                    e.target.style.height = 'auto';
+                    e.target.style.height = e.target.scrollHeight + 'px';
+                }}
+                rows={1}
             />
         )}
         <div className="btn-group">

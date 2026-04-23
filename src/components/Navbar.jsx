@@ -65,25 +65,24 @@ const Navbar = () => {
 
             {token ? (
                 <div className="sidebar-footer">
-                    <div className="user-profile">
+                    <div className={`user-profile ${isCollapsed ? 'collapsed' : ''}`}>
                         <div className="user-avatar">
                             <VscAccount />
                         </div>
-                        {isCollapsed ? (
-                            <button onClick={handleLogout} className="logout-btn-sidebar collapsed" title="Logout">
-                                <VscSignOut className="nav-icon" />
-                            </button>
-                        ) : (
-                            <>
-                                <div className="user-details">
-                                    <span className="username">{username || 'User'}</span>
-                                </div>
-                                <button onClick={handleLogout} className="logout-btn-inline" title="Logout">
-                                    <VscSignOut />
-                                </button>
-                            </>
+                        {!isCollapsed && (
+                            <div className="user-details">
+                                <span className="username">{username || 'User'}</span>
+                            </div>
                         )}
                     </div>
+                    <button 
+                        onClick={handleLogout} 
+                        className={`nav-item logout-btn ${isCollapsed ? 'collapsed' : ''}`}
+                        title="Logout"
+                    >
+                        <VscSignOut className="nav-icon" />
+                        {!isCollapsed && <span>Logout</span>}
+                    </button>
                 </div>
             ) : (
                 <div className="sidebar-footer">

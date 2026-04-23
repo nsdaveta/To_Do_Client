@@ -13,7 +13,13 @@ const TitleBar = () => {
       setAppWindow(win);
       
       const updateMaximized = async () => {
-        setIsMaximized(await win.isMaximized());
+        const maximized = await win.isMaximized();
+        setIsMaximized(maximized);
+        if (maximized) {
+          document.body.classList.add('maximized');
+        } else {
+          document.body.classList.remove('maximized');
+        }
       };
       
       updateMaximized();

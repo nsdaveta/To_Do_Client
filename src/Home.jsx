@@ -165,7 +165,7 @@ const Home = () => {
 
             <div className="todo-list-preview">
                 {todos.length > 0 ? (
-                    todos.slice(0, 5).map((todo, index) => (
+                    todos.map((todo, index) => (
                         <ToDoItem 
                             key={todo.id}
                             index={index + 1}
@@ -181,13 +181,6 @@ const Home = () => {
                     </div>
                 )}
             </div>
-
-            {todos.length > 5 && (
-                <div className="more-tasks-indicator">
-                    <p>And {todos.length - 5} more tasks...</p>
-                    <Link to="/todos" className="secondary-btn">View All Tasks</Link>
-                </div>
-            )}
         </div>
         </>
     );

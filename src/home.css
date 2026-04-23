@@ -113,6 +113,7 @@
 
 .input-wrapper {
   flex: 1;
+  display: flex;
 }
 
 .home-header {
@@ -149,7 +150,7 @@
 }
 
 .todo-input {
-  flex: 1;
+  width: 100%;
   padding: 12px 16px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--glass-border);
@@ -158,6 +159,7 @@
   color: var(--text-main);
   font-size: 1rem;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
 }
 
 .todo-input:focus {
@@ -180,6 +182,34 @@
 .add-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.4);
+}
+
+.todo-list-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-top: 10px;
+}
+
+/* Custom Scrollbar for To-Do List */
+.todo-list-preview::-webkit-scrollbar {
+  width: 6px;
+}
+
+.todo-list-preview::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.todo-list-preview::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.todo-list-preview::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .todo-list {
