@@ -79,10 +79,10 @@
   gap: 12px;
   padding: 8px 12px;
   border-radius: 4px;
-  color: #a0a0a0;
+  color: rgba(255, 255, 255, 0.65); /* Brighter for better readability */
   text-decoration: none;
   font-size: 0.85rem;
-  font-weight: 400;
+  font-weight: 500; /* Slightly bolder */
   transition: all 0.15s;
   white-space: nowrap;
 }
@@ -128,14 +128,16 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px;
+  padding: 8px 12px; /* Slightly tighter padding */
   width: 100%;
   border-radius: 8px;
-  transition: background 0.2s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
 }
 
 .user-profile:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.05);
 }
 
 .user-avatar {
@@ -163,9 +165,8 @@
   font-size: 0.85rem;
   font-weight: 500;
   color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.2;
+  word-break: break-word; /* Ensure it doesn't overflow the container */
 }
 
 .logout-btn-inline {
