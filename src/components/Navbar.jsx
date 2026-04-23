@@ -55,47 +55,47 @@ const Navbar = () => {
                     {!isCollapsed && <span>Home</span>}
                 </NavLink>
                 
-                {token ? (
-                    <>
-                        <NavLink to="/todos" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
-                            <VscChecklist className="nav-icon" />
-                            {!isCollapsed && <span>My Tasks</span>}
-                        </NavLink>
-                        
-                        <div className="sidebar-footer">
-                            <div className="user-profile">
-                                <div className="user-avatar">
-                                    <VscAccount />
-                                </div>
-                                {isCollapsed ? (
-                                    <button onClick={handleLogout} className="logout-btn-sidebar collapsed" title="Logout">
-                                        <VscSignOut className="nav-icon" />
-                                    </button>
-                                ) : (
-                                    <div className="user-details">
-                                        <span className="username">{username || 'User'}</span>
-                                        <button onClick={handleLogout} className="logout-btn-inline">
-                                            <VscSignOut className="logout-mini-icon" />
-                                            <span>Logout</span>
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </>
-                ) : (
-                    <div className="sidebar-footer">
-                        <NavLink to="/login" className="nav-item">
-                            <VscAccount className="nav-icon" />
-                            {!isCollapsed && <span>Sign In</span>}
-                        </NavLink>
-                        <NavLink to="/register" className="nav-item">
-                            <VscAccount className="nav-icon" />
-                            {!isCollapsed && <span>Sign Up</span>}
-                        </NavLink>
-                    </div>
+                {token && (
+                    <NavLink to="/todos" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
+                        <VscChecklist className="nav-icon" />
+                        {!isCollapsed && <span>My Tasks</span>}
+                    </NavLink>
                 )}
             </div>
+
+            {token ? (
+                <div className="sidebar-footer">
+                    <div className="user-profile">
+                        <div className="user-avatar">
+                            <VscAccount />
+                        </div>
+                        {isCollapsed ? (
+                            <button onClick={handleLogout} className="logout-btn-sidebar collapsed" title="Logout">
+                                <VscSignOut className="nav-icon" />
+                            </button>
+                        ) : (
+                            <div className="user-details">
+                                <span className="username">{username || 'User'}</span>
+                                <button onClick={handleLogout} className="logout-btn-inline">
+                                    <VscSignOut className="logout-mini-icon" />
+                                    <span>Logout</span>
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : (
+                <div className="sidebar-footer">
+                    <NavLink to="/login" className="nav-item">
+                        <VscAccount className="nav-icon" />
+                        {!isCollapsed && <span>Sign In</span>}
+                    </NavLink>
+                    <NavLink to="/register" className="nav-item">
+                        <VscAccount className="nav-icon" />
+                        {!isCollapsed && <span>Sign Up</span>}
+                    </NavLink>
+                </div>
+            )}
         </nav>
     );
 };
