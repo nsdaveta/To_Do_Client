@@ -15,7 +15,7 @@
   --text-main: #ffffff;
   --text-muted: #b0b0b0;
   --border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(45, 45, 45, 0.7);
+  --glass-bg: rgba(45, 45, 45, 0.4);
   --glass-border: rgba(255, 255, 255, 0.12);
   --success: #6ccb5f;
   --error: #ff99a4;
@@ -169,6 +169,7 @@ body.tauri-mode #root {
   flex-direction: row; /* Desktop layout (Sidebar) */
   height: 100vh;
   overflow: hidden;
+  padding-top: 32px; /* Space for TitleBar */
 }
 
 .App.web-mode {
@@ -191,8 +192,8 @@ body.tauri-mode #root {
 }
 
 .App.tauri-mode > main {
+  flex: 1;
   overflow-y: auto;
-  padding-top: 32px; /* Space for TitleBar */
 }
 
 /* Fluent UI Panel Style */
