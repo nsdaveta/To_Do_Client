@@ -1,4 +1,4 @@
-package com.todoapp.app
+package com.todoapp.tasks
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
