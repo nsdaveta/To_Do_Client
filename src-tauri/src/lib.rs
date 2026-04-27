@@ -1,3 +1,4 @@
+#[cfg(target_os = "windows")]
 use tauri::Manager;
 #[cfg(target_os = "windows")]
 use window_vibrancy::apply_mica;
