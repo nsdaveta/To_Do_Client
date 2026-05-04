@@ -169,7 +169,7 @@ body.tauri-mode #root {
   flex-direction: row; /* Desktop layout (Sidebar) */
   height: 100vh;
   overflow: hidden;
-  padding-top: 32px; /* Space for TitleBar */
+  padding-top: 0; /* No space needed for native titlebar */
 }
 
 .App.web-mode {

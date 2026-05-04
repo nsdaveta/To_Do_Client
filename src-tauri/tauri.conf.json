@@ -20,8 +20,8 @@
         "resizable": true,
         "fullscreen": false,
         "center": true,
-        "transparent": true,
-        "decorations": false,
+        "transparent": false,
+        "decorations": true,
         "shadow": true,
         "zoomHotkeysEnabled": false
       }

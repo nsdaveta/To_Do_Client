@@ -11,7 +11,7 @@ import VerifyOtp from './VerifyOtp';
 import ForgotPassword from './ForgotPassword';
 import useBackButton from './hooks/useBackButton';
 
-import TitleBar from './components/TitleBar';
+
 import Navbar from './components/Navbar';
 import TopNavbar from './components/TopNavbar';
 
@@ -22,10 +22,7 @@ function App()
   return(
     <div className={`App ${window.isDesktopTauri ? 'tauri-mode' : 'web-mode'}`}>
       {window.isDesktopTauri ? (
-        <>
-          <TitleBar />
-          <Navbar />
-        </>
+        <Navbar />
       ) : (
         <TopNavbar />
       )}
