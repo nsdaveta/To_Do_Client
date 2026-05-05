@@ -10,8 +10,11 @@
     position: sticky;
     top: 0;
     border-radius: 0 0 12px 12px;
+    background: rgba(26, 30, 42, 0.1); /* Minimal opacity for maximum transparency */
+    backdrop-filter: blur(6px) saturate(2.0);
+    -webkit-backdrop-filter: blur(6px) saturate(2.0);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-top: none;
-    background: var(--glass-bg);
     margin-bottom: 0;
 }
 

@@ -2,10 +2,10 @@
   width: 250px;
   height: 100%;
   padding-top: 32px; /* Space for TitleBar in Tauri */
-  background: rgba(255, 255, 255, 0.02); /* Very subtle to let Mica shine through */
-  backdrop-filter: blur(var(--panel-blur));
-  -webkit-backdrop-filter: blur(var(--panel-blur));
-  border-right: 1px solid var(--glass-border);
+  background: rgba(26, 30, 42, 0.1); /* Minimal opacity for maximum transparency */
+  backdrop-filter: blur(6px) saturate(2.0);
+  -webkit-backdrop-filter: blur(6px) saturate(2.0);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
   z-index: 100;
