@@ -180,7 +180,7 @@ body.tauri-mode #root {
 .App.web-mode > main {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: 120px 20px 20px 20px; /* 120px top padding for navbar */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -270,4 +270,11 @@ body.tauri-mode #root {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile: more padding for stacked navbar */
+@media (max-width: 480px) {
+  .App.web-mode > main {
+    padding: 180px 16px 16px 16px;
+  }
 }
