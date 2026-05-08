@@ -212,15 +212,15 @@
     }
 }
 
-/* Samsung Galaxy M21 and similar ~360px devices */
-@media (max-width: 380px) {
+/* Samsung Galaxy M21 and similar ~412px devices */
+@media (max-width: 430px) {
     .top-navbar {
         padding: 6px 10px;
     }
 
     .username-display {
-        max-width: 80px;
-        font-size: 0.8rem;
+        max-width: 140px;
+        font-size: 0.85rem;
     }
 
     .welcome-text {
@@ -233,7 +233,7 @@
     }
 
     .top-logout-btn {
-        padding: 5px 10px;
+        padding: 6px 10px;
         font-size: 0.8rem;
         gap: 5px;
     }
@@ -243,7 +243,7 @@
     }
 
     .user-icon {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 }
 
