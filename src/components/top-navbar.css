@@ -93,7 +93,9 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     padding-top: 4px;
+    min-width: 0; /* allow children to shrink */
 }
 
 .user-section {
@@ -101,12 +103,16 @@
     align-items: center;
     gap: 20px;
     padding: 6px 16px;
+    min-width: 0; /* allow children to shrink */
+    flex-shrink: 1;
 }
 
 .user-info {
     display: flex;
     align-items: center;
     gap: 10px;
+    min-width: 0; /* allow username span to truncate */
+    flex-shrink: 1;
 }
 
 .user-icon {
@@ -188,7 +194,7 @@
     }
 
     .welcome-text {
-        display: inline; /* Always visible */
+        display: inline;
     }
 
     .username-display {
@@ -203,6 +209,41 @@
 
     .nav-container {
         gap: 6px;
+    }
+}
+
+/* Samsung Galaxy M21 and similar ~360px devices */
+@media (max-width: 380px) {
+    .top-navbar {
+        padding: 6px 10px;
+    }
+
+    .username-display {
+        max-width: 80px;
+        font-size: 0.8rem;
+    }
+
+    .welcome-text {
+        display: none; /* Hide "Hello, " to save space, show only username */
+    }
+
+    .user-section {
+        gap: 8px;
+        padding: 4px 6px;
+    }
+
+    .top-logout-btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        gap: 5px;
+    }
+
+    .top-logout-btn span {
+        display: none; /* Icon-only logout button */
+    }
+
+    .user-icon {
+        font-size: 1rem;
     }
 }
 
