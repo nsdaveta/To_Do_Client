@@ -1,3 +1,1 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bcd2226911c9598a200274ed7afa106605628a97e6d6bac729c85f53cb5fdaa3
-size 1043
+{"rustc_fingerprint":5756969756740621991,"outputs":{"17747080675513052775":{"success":true,"status":"","code":0,"stdout":"rustc 1.95.0 (59807616e 2026-04-14)\nbinary: rustc\ncommit-hash: 59807616e1fa2540724bfbac14d7976d7e4a3860\ncommit-date: 2026-04-14\nhost: x86_64-pc-windows-msvc\nrelease: 1.95.0\nLLVM version: 22.1.2\n","stderr":""}},"successes":{}}
