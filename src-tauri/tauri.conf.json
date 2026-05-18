@@ -41,7 +41,7 @@
       "README.txt"
     ],
     "windows": {
-      "signCommand": "c:\\Users\\nsdav\\OneDrive\\Desktop\\MERN_STACK\\To_Do_List\\To_Do_Client\\sign-app.bat %1",
+      "signCommand": "sign-app.bat %1",
       "nsis": {
         "installMode": "perMachine",
         "installerIcon": "icons/icon.ico",
